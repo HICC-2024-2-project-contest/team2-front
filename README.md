@@ -17,11 +17,11 @@
 body{
   margin: 0;
 }
-```
 
 div{
   box-sizing: border-box;
 }
+```
 
    # 📋 Git 버전 관리 및 파일 네이밍 규칙
 
