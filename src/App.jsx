@@ -1,13 +1,12 @@
-import { useState } from 'react'
-import './App.css'
+import React, { useState } from "react";
+import "./App.css"; // 스타일링은 별도의 CSS 파일에서 관리
 
-function App() {
-
+const Moarampage = () => { //Moarampage 이름 변경 후 제작작
   return (
-    <div>
-
+    <div className="page">
+      
     </div>
   );
-}
+};
 
-export default App
+export default Moarampage;
