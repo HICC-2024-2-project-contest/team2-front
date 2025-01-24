@@ -7,6 +7,7 @@
 1. 터미널을 열고 아래 명령어를 실행합니다:
 ```bash
    npm create vite@latest
+```
 
 #기본 세팅
 
@@ -16,6 +17,7 @@
 body{
   margin: 0;
 }
+```
 
 div{
   box-sizing: border-box;
