@@ -24,6 +24,7 @@
    npm run dev
 ```
 url링크~~/ → Home 페이지
+
 url링크~~/trade → Trade 페이지
 
 ### 아래 브렌치 관리신경 써주세요요
