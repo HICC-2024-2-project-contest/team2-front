@@ -1,12 +1,20 @@
 import React, { useState } from "react";
-import "./App.css"; // 스타일링은 별도의 CSS 파일에서 관리
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Home from './pages/Home/Home';
+import Trade from './pages/Trade/Trade';
+import './App.css';
 
-const Moarampage = () => { //Moarampage 이름 변경 후 제작작
+function App() {
   return (
-    <div className="page">
-      
-    </div>
+    <Router>
+      <div className="page">
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/trade" element={<Trade />} />
+        </Routes>
+      </div>
+    </Router>
   );
-};
+}
 
-export default Moarampage;
+export default App;
