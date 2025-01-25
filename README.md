@@ -4,10 +4,16 @@
 - Node.js 버전: `v22.13.1`
 
 ## 해야할 것
-0. 컴퓨터 파일에 프로젝트 깃 클론을 생성
+0. node js 설치 후 컴퓨터 파일에 프로젝트 깃 클론을 생성
 1. 터미널을 열고 아래 명령어를 실행합니다:
 
-- 1 vita 설치 
+- 1 vita 설치 확인
+```bash
+   npm list vite
+```
+
+안되있으면
+
 ```bash
    npm install --save-dev vite
 ```
