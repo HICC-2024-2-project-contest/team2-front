@@ -1,12 +1,11 @@
-
 .container {
-    padding: 20px;
-    text-align: center;
-  }
-  
-.title {
-  font-size: 2rem;
-  color: #333;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
-  
-  /* 예시입니다 */
+
+.content {
+  flex: 1;
+  overflow-y: auto;
+}
