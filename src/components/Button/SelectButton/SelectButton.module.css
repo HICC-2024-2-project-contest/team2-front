@@ -1,0 +1,19 @@
+.selectButton {
+    width: 90%;
+    padding: 12px 10px;
+    background-color: #5A91FF; /* ✅ 파란색 */
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+  
+  .selectButton:hover {
+    background-color: #0C5DFF; /* ✅ 살짝 어두운 파란색 */
+  }
+  

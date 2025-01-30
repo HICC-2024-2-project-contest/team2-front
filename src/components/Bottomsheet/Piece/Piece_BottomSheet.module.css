@@ -1,0 +1,35 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px 20px;
+  }
+  
+  .title {
+    font-size: 18px;
+    font-weight: bold;
+  }
+  
+  .closeIcon {
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+  }
+  
+  .content {
+    padding: 10px 20px;
+  }
+  
+  .subtitle {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    text-align: left;
+  }
+  
+  /*색깔은 FilterButton.module.css 에서 변경*/
+
+  .bottomSheetFilterHeader {
+    padding: 10px 0px; /* 바텀시트에서만 적용할 패딩 */
+  }
+  
