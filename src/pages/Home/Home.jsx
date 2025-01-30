@@ -1,11 +1,28 @@
-import React from 'react';
-import styles from './Home.module.css';
+import React, { useState } from "react";
+import styles from "./Home.module.css";
+import Header from "../../components/Header/Header";
+import Footer from "../../components/Footer/Footer";
+import SearchBar from "../../components/Header/SearchBar";
+import ContentSwitch from "../../components/ContentSwitch/ContentSwitch";
+import ExhibitionContent from "../../components/ExhibitionContent/ExhibitionContent";
+import TradeContent from "../../components/TradeContent/TradeContent";
 
 function Home() {
+  const [activeTab, setActiveTab] = useState("exhibition"); // 초기값 전시
+
+  const handleTabSwitch = (tab) => {
+    setActiveTab(tab);
+  };
+
   return (
     <div className={styles.container}>
-      <h1 className={styles.title}>Welcome to the Home Page</h1>
-      <p>This is the main page of the application.</p>
+      <Header />
+      <ContentSwitch activeTab={activeTab} onTabSwitch={handleTabSwitch} />
+      <SearchBar />
+      <div className={styles.content}>
+        {activeTab === "exhibition" ? <ExhibitionContent /> : <TradeContent />}
+      </div>
+      <Footer />
     </div>
   );
 }

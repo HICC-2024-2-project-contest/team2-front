@@ -1,12 +1,195 @@
-
 .container {
-    padding: 20px;
-    text-align: center;
-  }
-  
-.title {
-  font-size: 2rem;
-  color: #333;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
-  
-  /* 예시입니다 */
+
+.content {
+  flex: 1;
+  overflow-y: auto;
+  padding-bottom: 80px;
+}
+
+.searchSection {
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  justify-content: flex-start;
+}
+
+/* 검색창 스타일 */
+.searchBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 600px;
+  border: 1.4px solid #a8a8a8;
+  border-radius: 30px;
+  padding: 12px 30px;
+  background-color: white;
+}
+
+.searchBar input {
+  flex: 1;
+  border: none;
+  background: none;
+  font-size: 19px;
+  outline: none;
+  color: #767676;
+}
+
+.searchBar input::placeholder {
+  color: #767676;
+}
+
+.filterButtons {
+  display: flex;
+  gap: 3px;
+  margin-top: 7px;
+  justify-content: flex-start;
+}
+
+.filterButtons button {
+  border: 1.4px solid #a8a8a8;
+  padding: 7px 18px;
+  border-radius: 30px;
+  justify-content: space-between;
+  font-size: 17px;
+  background-color: white;
+  cursor: pointer;
+  color: #767676;
+  margin: 6px;
+}
+
+.filterButtons button:hover {
+  background-color: #f5f5f5;
+}
+
+.filterButtons button svg {
+  width: 20px;
+  height: 20px;
+  margin-left: auto; /* 아이콘을 버튼 오른쪽 끝으로 이동 */
+}
+
+/* 추천 전시 제목 */
+.recommendedTitle {
+  font-size: 21px;
+  font-weight: 600;
+  margin-left: 27px;
+}
+
+/* 추천 전시 리스트 */
+.exhibitionList {
+  padding: 0 16px;
+}
+
+/* 추천 전시 아이템 */
+.exhibitionItem {
+  display: flex;
+  align-items: center;
+  position: relative;
+  padding: 16px;
+  border-bottom: 1px solid #eee;
+}
+
+.exhibitionThumbnail {
+  width: 120px;
+  height: 160px;
+  background-color: #ddd; /* 이미지 자리 */
+  border-radius: 6px;
+  position: relative;
+  overflow: hidden;
+}
+
+.exhibitionInfo {
+  margin-left: 30px;
+  flex: 1;
+}
+
+.exhibitionHeader {
+  display: flex;
+  align-items: center;
+}
+
+.exhibitionTitle {
+  font-size: 21px;
+  font-weight: 500;
+}
+
+.exhibitionLocation {
+  font-size: 16px;
+  font-weight: 500;
+  color: #767676;
+}
+
+.exhibitionDate {
+  font-size: 16px;
+  font-weight: 500;
+  color: #767676;
+}
+
+.exhibitionCount {
+  font-size: 16px;
+  color: #a8a8a8;
+  font-weight: 400;
+  margin-top: 30px;
+}
+
+.exhibitionBadge {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  font-size: 17px;
+  background-color: #5a91ff;
+  color: white;
+  padding: 1px 7px;
+  border-radius: 20px;
+}
+
+.bookmarkButton {
+  position: absolute;
+  top: 40px;
+  right: 10px;
+  background: none;
+  border: none;
+  font-size: 18px;
+  color: #ccc;
+  cursor: pointer;
+}
+
+.bookmarkButton:hover {
+  color: #007bff;
+}
+
+.floatingButton {
+  position: fixed;
+  bottom: 100px;
+  right: max(10px, 4vw);
+  width: 56px;
+  height: 56px;
+  background-color: #0c5dff;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  font-size: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+  z-index: 1000;
+}
+
+@media (min-width: 768px) {
+  .floatingButton {
+    right: calc(50% - 340px);
+  }
+}
