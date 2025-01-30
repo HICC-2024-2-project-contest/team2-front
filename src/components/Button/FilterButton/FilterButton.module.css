@@ -1,0 +1,29 @@
+.button {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 5px 16px;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    background-color: white;
+    cursor: pointer;
+    font-size: 14px;
+  }
+  
+  .icon {
+    width: 16px;
+    height: 16px;
+  }
+  
+  .v {
+    color: #767676;
+  }
+  
+  .x {
+    color: #767676;
+  }
+  
+  .default {
+    color: #767676;
+  }
+  

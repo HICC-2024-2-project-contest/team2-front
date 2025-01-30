@@ -2,6 +2,7 @@ import React from 'react';
 import styles from './Trade.module.css';
 import Header from "../../components/Header/Header";
 import SearchBar from '../../components/Header/Searchbar';
+import FilterHeader from '../../components/Header/FilterHeader';
 import Footer from "../../components/Footer/Footer";
 
 function Trade() {
@@ -9,6 +10,7 @@ function Trade() {
     <div className={styles.container}>
       <Header />
       <SearchBar />
+      <FilterHeader />
       <div className={styles.content}>
         <h1 className={styles.title}>Welcome to the Trade Page</h1>
         <p>This is the main page of the application.</p>
