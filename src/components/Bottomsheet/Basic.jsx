@@ -1,29 +1,48 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import styles from './Basic.module.css';
 
 const Basic = ({ isOpen, onClose, children }) => {
+  const [isClosing, setIsClosing] = useState(false);
+  const [visible, setVisible] = useState(false);
+
   useEffect(() => {
     if (isOpen) {
-      document.body.style.overflow = 'hidden'; // ✅ 모달 열릴 때 스크롤 방지
-    } else {
-      document.body.style.overflow = 'auto'; // ✅ 닫히면 스크롤 가능
+      setVisible(true);
+      setIsClosing(false);
+      document.body.style.overflow = 'hidden';
+    } else if (visible) {
+      handleClose();
     }
   }, [isOpen]);
 
-  if (!isOpen) return null;
+  const handleClose = () => {
+    setIsClosing(true);
+    document.body.style.overflow = 'auto';
+
+    setTimeout(() => {
+      setIsClosing(false);
+      setVisible(false);
+      onClose();
+    }, 300); // 애니메이션 지속 시간
+  };
+
+  if (!visible) return null;
 
   return (
-    <div className={styles.overlay} onClick={onClose}>
-      <div className={styles.bottomSheet} onClick={(e) => e.stopPropagation()}>
+    // 페이드 인 아웃은 없음
+    <div className={`${styles.overlay} ${isClosing ? styles.fadeOut : styles.fadeIn}`} onClick={handleClose}> 
+      <div
+        className={`${styles.bottomSheet} ${isClosing ? styles.slideDown : styles.slideUp}`}
+        onClick={(e) => e.stopPropagation()}
+      >
         <div className={styles.handle}></div>
-        {children} {/* ✅ 바텀시트 안에 들어갈 내용 */}
+        {children}
       </div>
     </div>
   );
 };
 
-// ✅ PropTypes 추가 (ESLint 오류 방지)
 Basic.propTypes = {
   isOpen: PropTypes.bool.isRequired,
   onClose: PropTypes.func.isRequired,
