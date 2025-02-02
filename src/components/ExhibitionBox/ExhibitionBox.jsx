@@ -1,8 +1,8 @@
 import React from "react";
 import styles from "./ExhibitionBox.module.css";
 import PropTypes from "prop-types";
-import BookmarkIcon from "../../assets/svg/Bookmark.svg";
-import BookmarkCIcon from "../../assets/svg/BookmarkC.svg";
+import BookmarkIcon from "../../assets/svg/Bookmark.svg?url";
+import BookmarkCIcon from "../../assets/svg/BookmarkC.svg?url";
 
 const ExhibitionItem = ({ title, location, date, count }) => {
   const [bookmarked, setBookmarked] = React.useState(false);
@@ -10,11 +10,7 @@ const ExhibitionItem = ({ title, location, date, count }) => {
   return (
     <div className={styles.exhibitionItem}>
       <div className={styles.exhibitionThumbnail}>
-        <img
-          src="/images/poster1.png"
-          className={styles.posterImage}
-          alt="Exhibition Poster"
-        />
+        <img src="/images/ex1.png" className={styles.posterImage} />
         <span className={styles.exhibitionBadge}>D-1</span>
       </div>
 
@@ -29,7 +25,10 @@ const ExhibitionItem = ({ title, location, date, count }) => {
         className={styles.bookmarkButton}
         onClick={() => setBookmarked(!bookmarked)}
       >
-        {bookmarked ? <BookmarkCIcon /> : <BookmarkIcon />}
+        <img
+          src={bookmarked ? BookmarkCIcon : BookmarkIcon}
+          alt="Bookmark Icon"
+        />
       </button>
     </div>
   );
@@ -42,14 +41,16 @@ ExhibitionItem.propTypes = {
   count: PropTypes.number.isRequired,
 };
 
-const exhibitions = Array(1).fill({
-  title: "홍익대학교 동양학과",
-  location: "서울특별시 마포구",
-  date: "2024.11.04 ~ 2024.11.09",
-  count: 23,
-});
+const exhibitions = [
+  {
+    title: "홍익대학교 동양학과",
+    location: "서울특별시 마포구",
+    date: "2024.11.04 ~ 2024.11.09",
+    count: 23,
+  },
+];
 
-const ExhibitionList = () => {
+const ExhibitionBox = () => {
   return (
     <div className={styles.container}>
       {exhibitions.map((exhibition, index) => (
@@ -59,4 +60,4 @@ const ExhibitionList = () => {
   );
 };
 
-export default ExhibitionList;
+export default ExhibitionBox;

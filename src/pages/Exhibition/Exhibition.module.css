@@ -1,0 +1,25 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow: hidden; /* 🔹 전체 페이지에서 스크롤 가능하도록 설정 */
+}
+
+.content {
+  flex: 1;
+  overflow-y: auto;
+  padding-bottom: 80px;
+  max-height: calc(
+    100vh - 180px
+  ); /* 🔹 상단(Header, SearchBar, FilterHeader) 공간 제외 */
+}
+
+.section {
+  margin: 24px 20px;
+}
+
+.sectionTitle {
+  font-size: 21px;
+  font-weight: 600;
+  margin-left: 40px;
+}
