@@ -23,3 +23,29 @@
   font-weight: 600;
   margin-left: 40px;
 }
+
+.floatingButton {
+  position: fixed;
+  bottom: 100px;
+  right: max(10px, 4vw);
+  width: 56px;
+  height: 56px;
+  background-color: #0c5dff;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  font-size: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+  z-index: 1000;
+}
+
+@media (min-width: 768px) {
+  .floatingButton {
+    right: calc(50% - 340px);
+  }
+}
