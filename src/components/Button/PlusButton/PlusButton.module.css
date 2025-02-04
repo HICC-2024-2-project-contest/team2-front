@@ -38,12 +38,8 @@
     z-index: 998;
   }
   
-  .overlay.fadeIn {
-    background: rgba(0, 0, 0, 0.5);
-  }
-  
-  .overlay.fadeOut {
-    background: rgba(0, 0, 0, 0);
+  .overlay.active {
+    background: rgba(0, 0, 0, 0.3); /* 활성화 시 */
   }
 
   /* 버튼 클릭 시 나타나는 메뉴 */
@@ -53,7 +49,7 @@
     right: 30px;
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 15px;
     z-index: 999;
   }
   

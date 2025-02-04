@@ -17,7 +17,7 @@ function PlusButton({ onToggle }) {
   return (
     <>
       {/* 배경 어두워지는 오버레이 */}
-      {isOpen && <div className={`${styles.overlay} ${isOpen ? styles.fadeIn : styles.fadeOut}`} onClick={handleClick}></div>}
+      {isOpen && <div className={`${styles.overlay} ${isOpen ? styles.active : ''}`} onClick={handleClick}></div>}
 
       {/* 플로팅 버튼 */}
       <button
