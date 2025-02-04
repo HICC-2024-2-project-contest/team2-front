@@ -36,7 +36,7 @@ function Trade() {
   return (
     <div className={styles.container}>
       <Header />
-      <SearchBar />
+      <SearchBar placeholder="작품, 제품명을 입력하세요"/>
       <FilterHeader filters={filters} onFilterClick={handleFilterClick} />
 
       <div className={styles.content}>

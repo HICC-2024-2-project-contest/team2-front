@@ -1,9 +1,8 @@
 import React from 'react';
-import styles from './SearchBar.module.css';
 import PropTypes from 'prop-types';
-import SearchIcon from '../../assets/svg/Search_button.svg';
+import styles from './SearchBar.module.css';
 
-function SearchBar({ placeholder }) {
+function SearchBarNonicon({ placeholder }) {
   return (
     <div className={styles.searchBarContainer}>
       <div className={styles.inputWrapper}>
@@ -12,22 +11,19 @@ function SearchBar({ placeholder }) {
           className={styles.input}
           placeholder={placeholder}
         />
-        <button className={styles.searchButton}>
-          <img src={SearchIcon} alt="Search Icon" className={styles.icon} />
-        </button>
       </div>
     </div>
   );
 }
 
 // PropTypes 설정
-SearchBar.propTypes = {
+SearchBarNonicon.propTypes = {
   placeholder: PropTypes.string
 };
 
 // 기본값 설정
-SearchBar.defaultProps = {
-  placeholder: "Search here..."
+SearchBarNonicon.defaultProps = {
+  placeholder: "입력하기"
 };
 
-export default SearchBar;
+export default SearchBarNonicon;

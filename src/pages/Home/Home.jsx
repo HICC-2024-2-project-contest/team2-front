@@ -18,7 +18,7 @@ function Home() {
     <div className={styles.container}>
       <Header />
       <ContentSwitch activeTab={activeTab} onTabSwitch={handleTabSwitch} />
-      <SearchBar />
+      <SearchBar placeholder="검색어를 입력하세요"/>
       <div className={styles.content}>
         {activeTab === "exhibition" ? <ExhibitionContent /> : <TradeContent />}
       </div>
