@@ -8,6 +8,7 @@ import Tool_BottomSheet from '../../components/Bottomsheet/Tool/Tool_BottomSheet
 import ArrayBottomSheet from "../../components/Bottomsheet/Array/Array_BottomSheet";
 import Footer from "../../components/Footer/Footer";
 import TradeContent from "../../components/TradeContent/TradeContent";
+import PlusButton from "../../components/Button/PlusButton/PlusButton";
 
 function Trade() {
   const [filters, setFilters] = useState([
@@ -42,6 +43,9 @@ function Trade() {
       <div className={styles.content}>
         <TradeContent />
       </div>
+
+      {/* 플로팅 버튼 추가 */}
+      <PlusButton />
 
       {/* 작품 BottomSheet */}
       <Piece_BottomSheet isOpen={isPieceSheetOpen} onClose={() => setPieceSheetOpen(false)} />
