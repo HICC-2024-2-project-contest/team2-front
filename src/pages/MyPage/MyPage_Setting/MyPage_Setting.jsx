@@ -1,17 +1,18 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./MyPage_Setting.module.css";
-import Header from "../../../components/Header/Header";
 import Footer from "../../../components/Footer/Footer";
 import SearchBar from "../../../components/Header/SearchBar";
 import SearchBarNonicon from "../../../components/Header/SearchBar_nonicon";
 import ProfileInitial from "../../../assets/images/Profile_initial.png";
 import CameraIcon from "../../../assets/svg/Camera.svg";
 import BackIcon from "../../../assets/svg/Back_icon.svg";
+import UniversitySearch_BottomSheet from "../../../components/Bottomsheet/UniversitySearch/UniversitySearch_BottomSheet";
 
 function MyPage_Setting() {
   const navigate = useNavigate();
   const [profileImage, setProfileImage] = useState(ProfileInitial);
+  const [isBottomSheetOpen, setBottomSheetOpen] = useState(false);
 
   const handleImageChange = (event) => {
     const file = event.target.files[0];
@@ -51,11 +52,13 @@ function MyPage_Setting() {
 
         {/* 닉네임 입력 */}
         <label className={styles.label}>닉네임*</label>
-        <SearchBarNonicon placeholder="닉네임 입력" />
+        <SearchBarNonicon placeholder="입력하기" />
 
         {/* 대학교 입력 */}
         <label className={styles.label}>대학교</label>
-        <SearchBar placeholder="검색하기" />
+        <div onClick={() => setBottomSheetOpen(true)}>
+          <SearchBar placeholder="검색하기" />
+        </div>
 
         {/* 거래 위치 입력 */}
         <label className={styles.label}>거래 위치</label>
@@ -63,6 +66,12 @@ function MyPage_Setting() {
       </div>
 
       <Footer />
+
+      {/* 대학교 검색 바텀시트 */}
+      <UniversitySearch_BottomSheet 
+        isOpen={isBottomSheetOpen} 
+        onClose={() => setBottomSheetOpen(false)} 
+      />
     </div>
   );
 }
