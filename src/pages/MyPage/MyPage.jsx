@@ -38,10 +38,11 @@ function MyPage() {
           <p className={styles.menuItem}>스크랩한 글 보기</p>
         </div>
 
+        {/* 거래 섹션 */}
         <div className={styles.section}>
           <h3 className={styles.sectionTitle}>거래</h3>
-          <p className={styles.menuItem}>작성한 글 보기</p>
-          <p className={styles.menuItem}>찜한 상품</p>
+          <p className={styles.menuItem} onClick={() => navigate("/mypage/trade/my")}>작성한 글 보기</p> {/* 🔹 작성한 글 보기 클릭 시 이동 */}
+          <p className={styles.menuItem} onClick={() => navigate("/mypage/trade/scrap")}>찜한 상품</p> {/* 🔹 찜한 상품 클릭 시 이동 */}
         </div>
       </div>
       <Footer />

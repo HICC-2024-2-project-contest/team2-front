@@ -1,32 +1,38 @@
-// components/TradeContent/TradeContent.jsx
 import React from "react";
+import PropTypes from "prop-types";
 import styles from "./TradeContent.module.css";
-import TradeItemBox from "../../components/TradeItemBox/TradeItemBox";
-import ex1 from "../../assets/images/ex1.png";
+import TradeItemBox from "../TradeItemBox/TradeItemBox";
 
-const trades = Array(8).fill({
-  image: ex1,
-  title: "전시물품",
-  user: "홍길동",
-  price: "1000원",
-  daysAgo: "3일 전",
-});
+function TradeContent({ trades, CustomTradeItemBox }) {
+  const TradeBoxComponent = CustomTradeItemBox || TradeItemBox; // 기본값은 일반 TradeItemBox
 
-function TradeContent() {
   return (
     <div className={styles.container}>
       {trades.map((trade, index) => (
-        <TradeItemBox
+        <TradeBoxComponent
           key={index}
           image={trade.image}
           title={trade.title}
-          user={trade.user}
           price={trade.price}
           daysAgo={trade.daysAgo}
+          user={trade.user}
         />
       ))}
     </div>
   );
 }
+
+TradeContent.propTypes = {
+  trades: PropTypes.arrayOf(
+    PropTypes.shape({
+      image: PropTypes.string.isRequired,
+      title: PropTypes.string.isRequired,
+      price: PropTypes.string.isRequired,
+      daysAgo: PropTypes.string.isRequired,
+      user: PropTypes.string.isRequired,
+    })
+  ).isRequired,
+  CustomTradeItemBox: PropTypes.elementType, // 선택적으로 다른 TradeItemBox를 사용할 수 있도록 설정
+};
 
 export default TradeContent;
