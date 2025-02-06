@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
-import styles from "./TradeItemBox_My.module.css";
-import DotOptionIcon from "../../assets/svg/Dot_option.svg"; // 옵션 버튼 추가
+import styles from "./TradeItemBox_my.module.css";
+import DotOptionIcon from "../../assets/svg/Dot_option.svg";
+import OptionBottomSheet from "../Bottomsheet/OptionBottomSheet/OptionBottomSheet"; // 옵션 바텀시트 추가
 
 function TradeItemBox_my({ image, title, price, daysAgo }) {
+  const [isOptionOpen, setOptionOpen] = useState(false);
+
   return (
     <div className={styles.tradeItemBox}>
       <div className={styles.imageWrapper}>
@@ -12,11 +15,24 @@ function TradeItemBox_my({ image, title, price, daysAgo }) {
       <div className={styles.info}>
         <div className={styles.priceDetails}>
           <span className={styles.price}>{price}</span>
-          <img src={DotOptionIcon} alt="옵션" className={styles.dotOption} /> {/* Dot 옵션 아이콘 추가 */}
+          <img 
+            src={DotOptionIcon} 
+            alt="옵션" 
+            className={styles.dotOption} 
+            onClick={() => setOptionOpen(true)} 
+          />
         </div>
-        <h3 className={styles.title}>{title}</h3> {/* 유저 이름 대신 타이틀 이동 */}
-        <span className={styles.daysAgo}>{daysAgo}</span> {/* 기존 타이틀 자리에 daysAgo 이동 */}
+        <span className={styles.title}>{title}</span>
+        <span className={styles.daysAgo}>{daysAgo}</span>
       </div>
+
+      {/* 옵션 바텀시트 */}
+      <OptionBottomSheet 
+        isOpen={isOptionOpen} 
+        onClose={() => setOptionOpen(false)}
+        onEdit={() => console.log("수정하기 클릭됨")} // TODO: 수정 기능 추가
+        onDelete={() => console.log("삭제하기 클릭됨")} // TODO: 삭제 기능 추가
+      />
     </div>
   );
 }

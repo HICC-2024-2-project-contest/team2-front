@@ -39,7 +39,7 @@
   }
   
   .overlay.active {
-    background: rgba(0, 0, 0, 0.3); /* 활성화 시 */
+    background: rgba(0, 0, 0, 0.5); /* 활성화 시 */
   }
 
   /* 버튼 클릭 시 나타나는 메뉴 */

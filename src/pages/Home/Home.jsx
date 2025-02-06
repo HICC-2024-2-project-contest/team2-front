@@ -6,11 +6,13 @@ import SearchBar from "../../components/Header/SearchBar";
 import ContentSwitch from "../../components/ContentSwitch/ContentSwitch";
 import ExhibitionContent from "../../components/ExhibitionContent/ExhibitionContent";
 import TradeContent from "../../components/TradeContent/TradeContent";
+import SearchOverlay from "../../components/SearchBox/SearchOverlay";
 
 import sample1 from "../../assets/images/ex1.png";
 
 function Home() {
   const [activeTab, setActiveTab] = useState("exhibition"); // 초기값 전시
+  const [isSearchOpen, setSearchOpen] = useState(false); // 검색창 상태
   const [trades, setTrades] = useState([]);
 
   useEffect(() => {
@@ -35,11 +37,15 @@ function Home() {
     <div className={styles.container}>
       <Header />
       <ContentSwitch activeTab={activeTab} onTabSwitch={handleTabSwitch} />
-      <SearchBar placeholder="검색어를 입력하세요"/>
+      <div onClick={() => setSearchOpen(true)}>
+        <SearchBar placeholder="검색어를 입력하세요" />
+      </div>
       <div className={styles.content}>
         {activeTab === "exhibition" ? <ExhibitionContent /> : <TradeContent trades={trades} />}
       </div>
       <Footer />
+
+      <SearchOverlay isOpen={isSearchOpen} onClose={() => setSearchOpen(false)} />
     </div>
   );
 }

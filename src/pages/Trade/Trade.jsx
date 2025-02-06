@@ -9,6 +9,8 @@ import ArrayBottomSheet from "../../components/Bottomsheet/Array/Array_BottomShe
 import Footer from "../../components/Footer/Footer";
 import TradeContent from "../../components/TradeContent/TradeContent";
 import PlusButton from "../../components/Button/PlusButton/PlusButton";
+import SearchOverlay from "../../components/SearchBox/SearchOverlay";
+
 import sample1 from "../../assets/images/ex1.png";
 
 function Trade() {
@@ -23,7 +25,7 @@ function Trade() {
   const [isToolSheetOpen, setToolSheetOpen] = useState(false);
   const [isArraySheetOpen, setArraySheetOpen] = useState(false);
 
-  // 🔹 API에서 데이터 가져오기 (현재는 더미 데이터)
+  //  API에서 데이터 가져오기 (현재는 더미 데이터)
   useEffect(() => {
     const fetchData = async () => {
       const data = [
@@ -37,7 +39,7 @@ function Trade() {
     fetchData();
   }, []);
 
-  // 🔹 필터 버튼 클릭 시 동작
+  // 필터 버튼 클릭 시 동작
   const handleFilterClick = (filterLabel) => {
     if (filterLabel === "작품") {
       setPieceSheetOpen(true);
@@ -48,10 +50,14 @@ function Trade() {
     }
   };
 
+  const [isSearchOpen, setSearchOpen] = useState(false);
+
   return (
     <div className={styles.container}>
       <Header />
-      <SearchBar placeholder="작품, 제품명을 입력하세요"/>
+      <div onClick={() => setSearchOpen(true)}>
+        <SearchBar placeholder="작품, 제품명을 입력하세요" />
+      </div>
       <FilterHeader filters={filters} onFilterClick={handleFilterClick} />
 
       <div className={styles.content}>
@@ -70,6 +76,9 @@ function Trade() {
       {/* 정렬 BottomSheet */}
       <ArrayBottomSheet isOpen={isArraySheetOpen} onClose={() => setArraySheetOpen(false)} />
       
+      {/* 검색 오버레이 */}
+      <SearchOverlay isOpen={isSearchOpen} onClose={() => setSearchOpen(false)} />
+
       <Footer />
     </div>
   );
