@@ -1,8 +1,8 @@
 import { useState } from "react";
 import PropTypes from "prop-types";
 import styles from "./ExhibitionHeader.module.css";
-import BookmarkIcon from "../../../assets/svg/Bookmark.svg?url";
-import BookmarkCIcon from "../../../assets/svg/BookmarkC.svg?url";
+import BookmarkIcon from "../../../assets/svg/Bookmark.svg";
+import BookmarkCIcon from "../../../assets/svg/BookmarkC.svg";
 
 const ExhibitionHeader = ({ exhibition }) => {
   const [bookmarked, setBookmarked] = useState(false);
