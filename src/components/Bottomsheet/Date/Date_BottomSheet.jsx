@@ -12,7 +12,7 @@ const Date_BottomSheet = ({ isOpen, onClose }) => {
 
   const dateFilters = ["전체", "일주일", "1개월", "3개월"];
 
-  // ✅ 날짜 버튼 클릭 핸들러
+  // 날짜 버튼 클릭 핸들러
   const handleDateClick = (range) => {
     setSelectedDateRange(range);
   };
@@ -51,14 +51,14 @@ const Date_BottomSheet = ({ isOpen, onClose }) => {
             type="date"
             value={startDate}
             className={styles.dateInput}
-            onChange={(e) => setStartDate(e.target.value)} // ✅ 날짜 변경 핸들러 추가
+            onChange={(e) => setStartDate(e.target.value)}
           />
           <span className={styles.separator}>—</span>
           <input
             type="date"
             value={endDate}
             className={styles.dateInput}
-            onChange={(e) => setEndDate(e.target.value)} // ✅ 날짜 변경 핸들러 추가
+            onChange={(e) => setEndDate(e.target.value)}
           />
         </div>
       </div>

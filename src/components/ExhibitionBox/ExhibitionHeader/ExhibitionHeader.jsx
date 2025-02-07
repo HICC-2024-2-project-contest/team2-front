@@ -23,7 +23,7 @@ const ExhibitionHeader = ({ exhibition }) => {
       <div className={styles.exhibitionInfo}>
         <h2>{exhibition.title}</h2>
         <img
-          src={exhibition.schoolLogo || "/images/default_logo.png"} // ✅ 기본 로고 설정
+          src={exhibition.schoolLogo ?? "/images/default_logo.png"} //  기본 로고 설정
           className={styles.schoolLogo}
           alt="School Logo"
         />
@@ -39,7 +39,7 @@ ExhibitionHeader.propTypes = {
   exhibition: PropTypes.shape({
     poster: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
-    schoolLogo: PropTypes.string, // ✅ 필수 아님 (기본값 제공)
+    schoolLogo: PropTypes.string,
     school: PropTypes.string.isRequired,
     date: PropTypes.string.isRequired,
     dday: PropTypes.number.isRequired,

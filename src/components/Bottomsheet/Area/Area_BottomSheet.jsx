@@ -29,7 +29,7 @@ const Region_BottomSheet = ({ isOpen, onClose }) => {
     "전북",
   ];
 
-  // ✅ 지역 버튼 클릭 핸들러
+  // 지역 버튼 클릭 핸들러
   const handleRegionClick = (region) => {
     setSelectedRegion(region);
   };
