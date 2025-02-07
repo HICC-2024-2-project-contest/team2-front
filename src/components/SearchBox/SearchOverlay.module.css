@@ -1,0 +1,35 @@
+/* 전체 화면을 덮는 오버레이 */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 1);
+    display: flex;
+    flex-direction: column;
+    z-index: 1000;
+  }
+  
+  /* 상단 바 */
+  .header {
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    gap: 12px;
+  }
+  
+  /* 뒤로 가기 버튼 */
+  .backIcon {
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+  }
+  
+  /* 검색 결과 표시 영역 */
+  .results {
+    flex-grow: 1;
+    overflow-y: auto;
+    padding: 16px;
+  }
+  

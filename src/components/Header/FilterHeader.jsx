@@ -1,16 +1,14 @@
 import React from "react";
-import PropTypes from "prop-types"; // ✅ PropTypes 임포트
+import PropTypes from "prop-types";
 import styles from "./FilterHeader.module.css";
 import FilterButton from "../Button/FilterButton/FilterButton";
 
-const FilterHeader = ({
-  filters = [],
-  onFilterClick = () => {},
-  className = "",
-}) => {
+const FilterHeader = ({ filters, onFilterClick, className }) => {
+  // className 추가
   return (
-    <div className={`${styles.header} ${className}`}>
-      {/* ✅ className 적용 */}
+    <div className={`${styles.header} ${className || ""}`}>
+      {" "}
+      {/* className 적용 */}
       {filters.map((filter, index) => (
         <FilterButton
           key={index}
@@ -23,7 +21,6 @@ const FilterHeader = ({
   );
 };
 
-// ✅ PropTypes 추가
 FilterHeader.propTypes = {
   filters: PropTypes.arrayOf(
     PropTypes.shape({
@@ -32,7 +29,14 @@ FilterHeader.propTypes = {
     })
   ).isRequired,
   onFilterClick: PropTypes.func,
-  className: PropTypes.string, // ✅ className Prop 추가
+  className: PropTypes.string,
+};
+
+//
+FilterHeader.defaultProps = {
+  filters: [],
+  onFilterClick: () => {},
+  className: "", // ✅ className 기본값 추가
 };
 
 export default FilterHeader;

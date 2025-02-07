@@ -21,15 +21,25 @@
 
 .profileBox {
   display: flex;
-  justify-content: space-between;
+  align-items: center;
   padding: 10px;
   position: relative;
 }
 
-.profileImage {
-  width: 60px;
-  height: 60px;
+.profileImageContainer {
+  width: 80px;
+  height: 80px;
   border-radius: 50%;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #e0e0e0;
+}
+
+.profileImage {
+  width: 100%;
+  height: 100%;
   object-fit: cover;
 }
 
