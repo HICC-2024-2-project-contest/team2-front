@@ -10,6 +10,7 @@
 .inputWrapper {
     position: relative;
     width: 100%;
+    padding-right: 4%;
 }
 
 .input {
@@ -24,7 +25,7 @@
 .searchButton {
     position: absolute;
     top: 50%;
-    right: 0px;
+    right: 2%;
     transform: translateY(-50%);
     background: none;
     border: none;
