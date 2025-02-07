@@ -1,0 +1,38 @@
+.container {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+
+  .content {
+    flex: 1;
+    padding: 20px;
+    overflow-y: auto;
+  }
+
+  .logo {
+    width: 150px;
+    height: auto;
+    margin-top: 30%;
+    margin-bottom: 3%;
+
+  }
+  
+  .subtitle {
+    font-size: 16px;
+    margin: 5px;
+  }
+  
+  .kakaoButton {
+    border: none;
+    background: none;
+    cursor: pointer;
+    margin-top: 10%;
+  }
+  
+  .kakaoImage {
+    width: 312px;
+    height: auto;
+  }
+  

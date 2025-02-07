@@ -1,0 +1,29 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #ffffff;
+  }
+  
+  .logoContainer {
+    display: flex;
+    align-items: center;
+  }
+  
+  .logo {
+    width: 120px;
+    height: auto;
+  }
+  
+  .chatButtonContainer {
+    display: flex;
+    align-items: center;
+  }
+  
+  .chatButton {
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+  }
+ 
