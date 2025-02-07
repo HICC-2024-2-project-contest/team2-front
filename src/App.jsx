@@ -8,6 +8,8 @@ import MyPage_Setting from "./pages/MyPage/MyPage_Setting/MyPage_Setting";
 import MyPage_Trade_my from "./pages/MyPage/MyPage_Trade/MyPage_Trade_my";
 import MyPage_Trade_scrap from "./pages/MyPage/MyPage_Trade/MyPage_Trade_scrap";
 import Login from "./pages/Login/Login";
+import Chat from "./pages/Chat/Chat";
+
 import './App.css';
 
 function App() {
@@ -23,6 +25,7 @@ function App() {
           <Route path="/mypage/trade/my" element={<MyPage_Trade_my />} />
           <Route path="/mypage/trade/scrap" element={<MyPage_Trade_scrap />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/chat" element={<Chat />} />
         </Routes>
       </div>
     </Router>
