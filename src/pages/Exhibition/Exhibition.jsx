@@ -10,6 +10,7 @@ import DetailExhibition from "./DetailExhibition/DetailExhibition";
 import Piece_BottomSheet from "../../components/Bottomsheet/Piece/Piece_BottomSheet";
 import Tool_BottomSheet from "../../components/Bottomsheet/Tool/Tool_BottomSheet";
 import ArrayBottomSheet from "../../components/Bottomsheet/Array/Array_BottomSheet";
+import SearchOverlay from "../../components/SearchBox/SearchOverlay";
 
 function Exhibition() {
   const navigate = useNavigate(); // ✅ 네비게이션 훅 추가
@@ -21,6 +22,7 @@ function Exhibition() {
   ]);
 
   const [selectedExhibition, setSelectedExhibition] = useState(null);
+  const [isSearchOpen, setSearchOpen] = useState(false); // ✅ isSearchOpen 상태 추가
 
   const [isPieceSheetOpen, setPieceSheetOpen] = useState(false);
   const [isToolSheetOpen, setToolSheetOpen] = useState(false);
@@ -55,7 +57,13 @@ function Exhibition() {
   return (
     <div className={styles.container}>
       <Header />
-      <SearchBar />
+
+      {/* ✅ 검색 바 추가 */}
+      <div onClick={() => setSearchOpen(true)}>
+        <SearchBar placeholder="전시, 대학명을 검색하세요" />
+      </div>
+
+      {/* ✅ 필터 헤더 추가 */}
       <FilterHeader filters={filters} onFilterClick={handleFilterClick} />
 
       <div className={styles.content}>
@@ -99,6 +107,12 @@ function Exhibition() {
       </button>
 
       <Footer />
+
+      {/* ✅ 검색 오버레이 추가 */}
+      <SearchOverlay
+        isOpen={isSearchOpen}
+        onClose={() => setSearchOpen(false)}
+      />
     </div>
   );
 }

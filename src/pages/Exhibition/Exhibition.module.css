@@ -8,14 +8,14 @@
 .content {
   flex: 1;
   overflow-y: auto;
-  padding-bottom: 80px;
+  padding-bottom: 16px;
   max-height: calc(
     100vh - 180px
   ); /* 🔹 상단(Header, SearchBar, FilterHeader) 공간 제외 */
 }
 
 .section {
-  margin: 24px 20px;
+  margin: 24px 0px;
 }
 
 .sectionTitle {
@@ -26,22 +26,22 @@
 
 .floatingButton {
   position: fixed;
-  bottom: 100px;
-  right: max(10px, 4vw);
-  width: 56px;
-  height: 56px;
+  bottom: 90px;
+  right: 30px;
+  width: 60px;
+  height: 60px;
   background-color: #0c5dff;
   color: white;
   border: none;
   border-radius: 50%;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-  font-size: 32px;
+  font-size: 40px;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
   transition: background-color 0.2s ease-in-out;
-  z-index: 1000;
+  z-index: 999;
 }
 
 @media (min-width: 768px) {

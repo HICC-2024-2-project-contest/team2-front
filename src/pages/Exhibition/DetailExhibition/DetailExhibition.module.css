@@ -57,14 +57,14 @@
 /* 섹션 공통 스타일 */
 .section {
   margin-top: 0px;
-  padding-bottom: 20px; /* 🔹 스크롤 시 여백 추가 */
+  padding-bottom: 10px; /* 🔹 스크롤 시 여백 추가 */
   padding: 20px;
 }
 
 .section h3 {
   font-size: 18px;
   font-weight: 500;
-  margin-bottom: 16px;
+  margin-bottom: 8px;
   text-align: left; /*  왼쪽 정렬 */
 }
 
