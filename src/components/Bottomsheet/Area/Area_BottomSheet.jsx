@@ -6,7 +6,7 @@ import SelectButton from "../../Button/SelectButton/SelectButton";
 import XIconURL from "../../../assets/svg/X_icon.svg?url";
 
 const Region_BottomSheet = ({ isOpen, onClose }) => {
-  const [selectedRegion, setSelectedRegion] = useState("전체");
+  const [selectedRegions, setSelectedRegions] = useState(["전체"]);
 
   const regionFilters = [
     "전체",
@@ -31,7 +31,20 @@ const Region_BottomSheet = ({ isOpen, onClose }) => {
 
   // 지역 버튼 클릭 핸들러
   const handleRegionClick = (region) => {
-    setSelectedRegion(region);
+    if (region === "전체") {
+      setSelectedRegions(["전체"]); // ✅ "전체" 선택 시 다른 지역 해제
+    } else {
+      setSelectedRegions((prev) => {
+        if (prev.includes("전체")) {
+          return [region]; // ✅ "전체"가 선택된 경우, 개별 지역만 선택하도록 변경
+        }
+        if (prev.includes(region)) {
+          return prev.filter((r) => r !== region); // ✅ 이미 선택된 지역 클릭 시 해제
+        } else {
+          return [...prev, region]; // ✅ 새 지역 추가
+        }
+      });
+    }
   };
 
   return (
@@ -53,7 +66,9 @@ const Region_BottomSheet = ({ isOpen, onClose }) => {
           {regionFilters.map((region) => (
             <button
               key={region}
-              className={`${styles.regionButton} ${selectedRegion === region ? styles.selected : ""}`}
+              className={`${styles.regionButton} ${
+                selectedRegions.includes(region) ? styles.selected : ""
+              }`}
               onClick={() => handleRegionClick(region)}
             >
               {region}

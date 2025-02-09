@@ -7,9 +7,9 @@ import FilterHeader from "../../components/Header/FilterHeader";
 import Footer from "../../components/Footer/Footer";
 import ExhibitionBox from "../../components/ExhibitionBox/ExhibitionBox";
 import DetailExhibition from "./DetailExhibition/DetailExhibition";
-import Piece_BottomSheet from "../../components/Bottomsheet/Piece/Piece_BottomSheet";
-import Tool_BottomSheet from "../../components/Bottomsheet/Tool/Tool_BottomSheet";
-import ArrayBottomSheet from "../../components/Bottomsheet/Array/Array_BottomSheet";
+import Area_BottomSheet from "../../components/Bottomsheet/Area/Area_BottomSheet";
+import Date_BottomSheet from "../../components/Bottomsheet/Date/Date_BottomSheet";
+import Field_BottomSheet from "../../components/Bottomsheet/Field/Field_BottomSheet";
 import SearchOverlay from "../../components/SearchBox/SearchOverlay";
 
 function Exhibition() {
@@ -24,19 +24,19 @@ function Exhibition() {
   const [selectedExhibition, setSelectedExhibition] = useState(null);
   const [isSearchOpen, setSearchOpen] = useState(false); // ✅ isSearchOpen 상태 추가
 
-  const [isPieceSheetOpen, setPieceSheetOpen] = useState(false);
-  const [isToolSheetOpen, setToolSheetOpen] = useState(false);
-  const [isArraySheetOpen, setArraySheetOpen] = useState(false);
+  const [isAreaSheetOpen, setAreaSheetOpen] = useState(false);
+  const [isDateSheetOpen, setDateSheetOpen] = useState(false);
+  const [isFieldSheetOpen, setFieldSheetOpen] = useState(false);
 
   const handleFilterClick = (filterLabel) => {
     console.log(`${filterLabel} 클릭됨`);
 
     if (filterLabel === "지역") {
-      setPieceSheetOpen(true);
+      setAreaSheetOpen(true);
     } else if (filterLabel === "날짜") {
-      setToolSheetOpen(true);
+      setDateSheetOpen(true);
     } else if (filterLabel === "분야") {
-      setArraySheetOpen(true);
+      setFieldSheetOpen(true);
     }
   };
 
@@ -81,21 +81,21 @@ function Exhibition() {
       </div>
 
       {/* 지역 BottomSheet */}
-      <Piece_BottomSheet
-        isOpen={isPieceSheetOpen}
-        onClose={() => setPieceSheetOpen(false)}
+      <Area_BottomSheet
+        isOpen={isAreaSheetOpen}
+        onClose={() => setAreaSheetOpen(false)}
       />
 
       {/* 날짜 BottomSheet */}
-      <Tool_BottomSheet
-        isOpen={isToolSheetOpen}
-        onClose={() => setToolSheetOpen(false)}
+      <Date_BottomSheet
+        isOpen={isDateSheetOpen}
+        onClose={() => setDateSheetOpen(false)}
       />
 
       {/* 분야 BottomSheet */}
-      <ArrayBottomSheet
-        isOpen={isArraySheetOpen}
-        onClose={() => setArraySheetOpen(false)}
+      <Field_BottomSheet
+        isOpen={isFieldSheetOpen}
+        onClose={() => setFieldSheetOpen(false)}
       />
 
       {/* ✅ 플로팅 버튼 - RegisterExhibition 페이지로 이동 */}

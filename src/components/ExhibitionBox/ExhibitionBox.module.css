@@ -4,13 +4,13 @@
   min-height: auto;
   overflow-y: auto;
   overflow-x: hidden;
-  gap: 26px; /*  ExhibitionBox 간 간격 조정 */
+  gap: 16px; /*  ExhibitionBox 간 간격 조정 */
 }
 
 .content {
   flex: 1;
   overflow-y: auto;
-  padding-bottom: 26px;
+  padding-bottom: 16px;
 }
 
 /* 추천 전시 리스트 */
