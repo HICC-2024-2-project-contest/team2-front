@@ -1,0 +1,61 @@
+.exhibitionHeader {
+  display: flex;
+  align-items: center;
+  position: relative;
+  padding: 16px;
+  border-bottom: 1px solid #eee;
+  background-color: #fff;
+}
+
+.posterImage {
+  width: 120px;
+  height: 160px;
+  border-radius: 6px;
+  object-fit: cover;
+}
+
+.bookmarkButton {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+  color: #ccc;
+}
+
+.bookmarkButton:hover {
+  color: #007bff;
+}
+
+.exhibitionInfo {
+  margin-left: 20px;
+  flex: 1;
+}
+
+.exhibitionInfo h2 {
+  font-size: 22px;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.schoolLogo {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+  margin-bottom: 4px;
+}
+
+.exhibitionInfo p {
+  font-size: 16px;
+  color: #666;
+  margin: 4px 0;
+}
+
+.dday {
+  font-size: 16px;
+  font-weight: 600;
+  color: #ff4d4f;
+  margin-top: 8px;
+}
