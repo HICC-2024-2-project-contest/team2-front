@@ -1,4 +1,4 @@
-.exhibitionHeader {
+.tradeHeader {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -18,8 +18,8 @@
   position: relative;
 }
 
-/* 전시 정보 */
-.exhibitionInfo {
+/* 거래 정보 */
+.tradeInfo {
   display: flex;
   flex-direction: column;
   align-items: flex-start; /* 🔹 왼쪽 정렬 */
@@ -28,24 +28,24 @@
   width: 100%;
 }
 
-/* 전시 제목 */
-.exhibitionTitle {
+/* 거래 제목 */
+.tradeTitle {
   font-size: 18px;
   font-weight: 600;
   margin-bottom: 4px;
   padding-left: 5px;
 }
 
-/* 학교 정보 컨테이너 */
-.schoolContainer {
+/* 판매자 정보 컨테이너 */
+.sellerContainer {
   display: flex;
-  align-items: center; /* 🔹 학교 로고와 텍스트 수직 정렬 */
+  align-items: center; /* 🔹 판매자 로고와 텍스트 수직 정렬 */
   gap: 14px;
   padding-left: 5px;
 }
 
-/* 학교 로고 */
-.schoolLogo {
+/* 판매자 로고 */
+.sellerLogo {
   width: 40px;
   height: 40px;
   border-radius: 50%;
@@ -54,20 +54,20 @@
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.15);
 }
 
-/* 학교 이름 및 날짜 */
-.schoolInfo {
+/* 판매자 이름 및 날짜 */
+.sellerInfo {
   display: flex;
   flex-direction: column;
 }
 
-.schoolName {
+.sellerName {
   font-size: 14px;
   font-weight: 500;
   color: #767676;
   margin-bottom: 0px;
 }
 
-.exhibitionDate {
+.tradeDate {
   font-size: 14px;
   font-weight: 500;
   color: #a8a8a8;
@@ -75,7 +75,6 @@
 }
 
 /* D-day 뱃지 */
-
 .dday {
   position: absolute;
   bottom: 94px; /* ✅ 하단 정렬 */
@@ -89,6 +88,7 @@
   text-align: center;
 }
 
+/* 북마크 버튼 */
 .bookmarkButton {
   background: none;
   border: none;
@@ -103,10 +103,12 @@
   height: 27px;
 }
 
+/* 뒤로 가기 버튼 */
 .backIcon {
   width: 14px;
   height: 24px;
 }
+
 .backButton {
   position: absolute;
   top: 16px;

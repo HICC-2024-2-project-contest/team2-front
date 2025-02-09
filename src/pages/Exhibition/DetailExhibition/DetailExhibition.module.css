@@ -4,6 +4,8 @@
   padding: 16px;
   background-color: #ffffff;
   min-height: 100vh;
+  padding-bottom: 60px; /* ✅ 푸터 높이만큼 여백 추가 */
+  overflow-y: auto;
 }
 
 /* 뒤로 가기 버튼 */
@@ -32,16 +34,19 @@
   left: 0;
   width: 100%;
   background: white;
-  padding: 16px;
+  padding: 20px 16px; /* 기본 패딩 */
   box-shadow: none;
   transition: all 0.3s ease-in-out;
   opacity: 0;
   transform: translateY(-50px);
+  font-size: 24px; /* 기본 글자 크기 */
 }
 
 .fixedHeader.active {
   opacity: 1;
   transform: translateY(0);
+  padding: 10px 16px; /* 🔹 스크롤 시 패딩 줄이기 */
+  font-size: 18px; /* 🔹 스크롤 시 글자 크기 줄이기 */
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
@@ -98,4 +103,17 @@
 /* 부드러운 스크롤 효과 */
 html {
   scroll-behavior: smooth;
+}
+
+/* 푸터 고정 */
+.footer {
+  position: fixed; /* ✅ 항상 화면 하단에 고정 */
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: white;
+  padding: 16px 0;
+  box-shadow: 0 -2px 6px rgba(0, 0, 0, 0.1); /* ✅ 상단에 그림자 추가 */
+  text-align: center;
+  z-index: 1000;
 }
