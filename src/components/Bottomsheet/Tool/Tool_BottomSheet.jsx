@@ -13,7 +13,7 @@ const ToolDetail = ({ isOpen, onClose }) => {
   const [priceRange, setPriceRange] = useState({ minPrice: '', maxPrice: '' });
 
   const typeFilters = ["전체", "물감", "드로잉 도구", "브러쉬", "이젤", "캔버스/종이", "팔레트", "테이프프"];
-  const conditionFilters = ["새 제품", "중고 제품", "미개봉"];
+  const conditionFilters = ["새 제품", "중고 제품"];
 
   const handleTypeClick = (filterLabel) => setSelectedType(filterLabel);
   const handleConditionClick = (filterLabel) => setSelectedCondition(filterLabel);
