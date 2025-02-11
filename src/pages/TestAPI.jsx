@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { fetchExhibitions } from "../api/exhibitionService";
+import { fetchExhibitions } from "../api/exhibition-controller/exhibitionService";
 
 function TestAPI() {
   const [exhibitions, setExhibitions] = useState([]);

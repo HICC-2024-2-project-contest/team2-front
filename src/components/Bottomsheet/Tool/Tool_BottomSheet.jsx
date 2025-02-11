@@ -8,7 +8,7 @@ import PriceFilter from "../PriceFilter";
 import XIconURL from "../../../assets/svg/X_icon.svg?url";
 
 const ToolDetail = ({ isOpen, onClose }) => {
-  const [selectedType, setSelectedType] = useState(null);
+  const [selectedType, setSelectedType] = useState("전체");
   const [selectedCondition, setSelectedCondition] = useState(null);
   const [priceRange, setPriceRange] = useState({ minPrice: "", maxPrice: "" });
 
@@ -20,7 +20,7 @@ const ToolDetail = ({ isOpen, onClose }) => {
     "이젤",
     "캔버스/종이",
     "팔레트",
-    "테이프프",
+    "테이프",
   ];
   const conditionFilters = ["새 제품", "중고 제품"];
 
