@@ -24,7 +24,7 @@
   flex: 1;
   overflow-y: auto;
   padding: 10px 20px;
-  max-height: 50vh; /* 최대 높이 설정 */
+  max-height: 60vh; /* 최대 높이 설정 */
 }
 
 .subtitle {
@@ -43,10 +43,9 @@
   bottom: 0;
   z-index: 10;
 }
-  
-  /*색깔은 FilterButton.module.css .selected에서 변경*/
 
-  .bottomSheetFilterHeader {
-    padding: 10px 0px; /* 바텀시트에서만 적용할 패딩 */
-  }
-  
+/*색깔은 FilterButton.module.css .selected에서 변경*/
+
+.bottomSheetFilterHeader {
+  padding: 10px 0px; /* 바텀시트에서만 적용할 패딩 */
+}
