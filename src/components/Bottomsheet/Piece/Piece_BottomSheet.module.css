@@ -23,6 +23,7 @@
 .content {
   flex: 1;
   overflow-y: auto;
+  overflow-x: hidden;
   padding: 10px 20px;
   max-height: 50vh; /* 최대 높이 설정 */
 }
@@ -43,10 +44,14 @@
   bottom: 0;
   z-index: 10;
 }
-  
-  /*색깔은 FilterButton.module.css .selected에서 변경*/
 
-  .bottomSheetFilterHeader {
-    padding: 10px 0px; /* 바텀시트에서만 적용할 패딩 */
-  }
-  
+/*색깔은 FilterButton.module.css .selected에서 변경*/
+
+.bottomSheetFilterHeader {
+  display: flex;
+  flex-wrap: wrap; /* ✅ 줄바꿈 가능하도록 변경 */
+  justify-content: flex-start; /* ✅ 왼쪽 정렬 */
+  gap: 8px; /* ✅ 버튼 간격 조정 */
+  padding: 10px 0px;
+  overflow-x: hidden; /* ✅ 가로 스크롤 제거 */
+}

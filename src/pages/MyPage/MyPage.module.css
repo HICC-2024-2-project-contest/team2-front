@@ -56,7 +56,7 @@
 
 .userInfo {
   font-size: 0.8rem;
-  color: #6F6F6F;
+  color: #6f6f6f;
   margin: 5px 0 0;
 }
 
@@ -79,8 +79,7 @@
 
 .menuItem {
   font-size: 0.9rem;
-  color: #6F6F6F;
+  color: #6f6f6f;
   padding-left: 10px;
   cursor: pointer;
-  
 }

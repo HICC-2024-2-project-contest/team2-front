@@ -1,0 +1,62 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.content {
+  flex: 1;
+  overflow-y: auto;
+  padding: 10px 20px;
+  max-height: 50vh;
+}
+
+.title {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.closeIcon {
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+}
+
+.filterContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 16px;
+}
+
+.subtitle {
+  font-size: 16px;
+  font-weight: bold;
+  padding: 0 16px;
+  margin-top: 12px;
+}
+
+.filterButton {
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  padding: 8px 16px;
+  background: white;
+  cursor: pointer;
+}
+
+.filterButton.selected {
+  background: #316bff;
+  color: white;
+  border: none;
+}
+
+.buttonContainer {
+  padding: 16px;
+  position: sticky;
+  bottom: 0;
+  z-index: 10;
+}

@@ -4,8 +4,20 @@ import ex1 from "../../assets/images/ex1.png";
 import ex2 from "../../assets/images/ex2.png";
 
 const exhibitions = [
-  { id: 1, image: ex1, name: "홍익대학교 전시", start: "2025.01.01", end: "2025.02.02" },
-  { id: 2, image: ex2, name: "홍익대학교 전시2", start: "2025.02.03", end: "2025.03.04" },
+  {
+    id: 1,
+    image: ex1,
+    name: "홍익대학교 전시",
+    start: "2025.01.01",
+    end: "2025.02.02",
+  },
+  {
+    id: 2,
+    image: ex2,
+    name: "홍익대학교 전시2",
+    start: "2025.02.03",
+    end: "2025.03.04",
+  },
 ];
 
 function Exhibition() {
@@ -21,7 +33,7 @@ function Exhibition() {
 
   return (
     <div className={styles.container}>
-      <h1 className={styles.title}>현재 전시</h1>
+      <h1 className={styles.title}>현재 인기있는 전시</h1>
       <div className={styles.slider}>
         <button className={styles.navButton} onClick={handlePrev}>
           {"<"}

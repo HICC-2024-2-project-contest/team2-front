@@ -1,0 +1,219 @@
+/* 전체 컨테이너 */
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh; /* ✅ 전체 화면 높이 사용 */
+  width: 100vw;
+  overflow-x: hidden; /* 추가 */
+  overflow-y: auto;
+}
+
+.title {
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+  margin: 0 40px;
+}
+
+/* 헤더 (상단 고정) */
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 60px; /* ✅ 모바일과 데스크톱에서 동일하게 유지 */
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 20px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  z-index: 100;
+}
+
+/* 입력 폼 영역 (스크롤 가능) */
+.form {
+  flex: 1;
+  margin-top: 70px; /* ✅ 헤더 높이만큼 여백 추가 */
+  margin-bottom: 80px; /* ✅ 푸터 높이만큼 여백 추가 */
+  overflow-y: auto; /* ✅ 폼 내용만 스크롤 가능 */
+  padding: 20px;
+}
+
+/* 닫기 버튼 */
+.closeButton {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+/* 입력 필드 그룹 */
+.inputGroup {
+  margin-bottom: 24px;
+  display: flex;
+  flex-direction: column;
+}
+
+.inputGroup label {
+  font-weight: bold;
+  margin-bottom: 12px;
+}
+
+.inputGroup input,
+.inputGroup select,
+.inputGroup textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 16px;
+  background-color: #fff;
+}
+
+/* 전시 소개 입력창 */
+.inputGroup textarea {
+  min-height: 117px;
+  resize: none;
+  overflow-y: hidden;
+}
+
+/* 입력 필드 포커스 효과 */
+.inputGroup input:focus,
+.inputGroup select:focus,
+.inputGroup textarea:focus {
+  outline: none;
+  border-color: #0c5dff;
+  box-shadow: 0 0 5px rgba(12, 93, 255, 0.3);
+}
+
+/* 하단 고정 (완료 버튼) */
+.footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: white;
+  padding: 20px;
+  box-shadow: 0px -2px 4px rgba(0, 0, 0, 0.1);
+  z-index: 100;
+}
+
+.submitButton {
+  width: 100%;
+  padding: 14px;
+  background-color: #0c5dff;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.submitButton:hover {
+  background-color: #084acd;
+}
+
+/* 포스터 업로드 버튼 */
+.posterUpload {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 72px;
+  height: 72px;
+  border: 1px solid #a8a8a8;
+  border-radius: 8px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 24px;
+}
+
+.posterUpload:hover {
+  border-color: #0c5dff;
+}
+
+/* 파일 선택 input 숨기기 */
+.hiddenInput {
+  display: none;
+}
+
+/* 카메라 아이콘 스타일 */
+.cameraIcon {
+  width: 22px;
+  height: 20px;
+}
+
+/* 선택한 파일이 있을 때 미리보기 */
+.posterPreview {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+/* 임시저장 스타일 */
+.saveDraft {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 14px;
+  color: #9c9c9c;
+}
+
+/* ✅ 반응형 디자인 */
+@media (max-width: 480px) {
+  .container {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    padding: 15px;
+    padding-top: 60px; /* ✅ 헤더 공간 확보 */
+    padding-bottom: 70px; /* ✅ 푸터 공간 확보 */
+    overflow: hidden;
+  }
+
+  .header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 60px;
+    padding: 12px 16px;
+  }
+
+  .form {
+    flex: 1;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    overflow-y: auto;
+    padding: 16px;
+  }
+
+  .footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 70px;
+    padding: 16px;
+  }
+
+  .submitButton {
+    padding: 12px;
+    font-size: 14px;
+  }
+
+  .inputGroup input,
+  .inputGroup select,
+  .inputGroup textarea {
+    font-size: 14px;
+    width: 100%;
+  }
+}

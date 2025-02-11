@@ -1,3 +1,4 @@
+// eslint-disable-next-line no-unused-vars
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./MyPage.module.css";
@@ -18,17 +19,21 @@ function MyPage() {
         {/* 프로필 박스 */}
         <div className={styles.profileBox}>
           <div className={styles.profileImageContainer}>
-            <img src={ProfileImage} alt="Profile" className={styles.profileImage} />
+            <img
+              src={ProfileImage}
+              alt="Profile"
+              className={styles.profileImage}
+            />
           </div>
           <div className={styles.profileText}>
             <h2 className={styles.userName}>사용자 이름</h2>
             <p className={styles.userInfo}>내 정보를 추가하세요</p>
           </div>
-          <img 
-            src={SettingIcon} 
-            alt="설정" 
-            className={styles.settingButton} 
-            onClick={() => navigate("/mypage/setting")} 
+          <img
+            src={SettingIcon}
+            alt="설정"
+            className={styles.settingButton}
+            onClick={() => navigate("/mypage/setting")}
           />
         </div>
 
@@ -41,8 +46,20 @@ function MyPage() {
         {/* 거래 섹션 */}
         <div className={styles.section}>
           <h3 className={styles.sectionTitle}>거래</h3>
-          <p className={styles.menuItem} onClick={() => navigate("/mypage/trade/my")}>작성한 글 보기</p> {/* 🔹 작성한 글 보기 클릭 시 이동 */}
-          <p className={styles.menuItem} onClick={() => navigate("/mypage/trade/scrap")}>찜한 상품</p> {/* 🔹 찜한 상품 클릭 시 이동 */}
+          <p
+            className={styles.menuItem}
+            onClick={() => navigate("/mypage/trade/my")}
+          >
+            작성한 글 보기
+          </p>{" "}
+          {/* 🔹 작성한 글 보기 클릭 시 이동 */}
+          <p
+            className={styles.menuItem}
+            onClick={() => navigate("/mypage/trade/scrap")}
+          >
+            찜한 상품
+          </p>{" "}
+          {/* 🔹 찜한 상품 클릭 시 이동 */}
         </div>
       </div>
       <Footer />
