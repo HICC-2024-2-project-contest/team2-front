@@ -74,9 +74,9 @@ function Trade() {
     }
   };
 
-  //  TradeContent 아이템 클릭 시 상세 페이지로 이동
   const handleItemClick = (trade) => {
-    navigate(`/trade/detail`, { state: { trade } }); // 데이터를 state로 전달
+    console.log("이동할 데이터:", trade); // 🔹 디버깅 추가
+    navigate(`/trade/detail`, { state: { trade } }); // 🔹 state 전달 방식 확인
   };
 
   const [isSearchOpen, setSearchOpen] = useState(false);
@@ -98,28 +98,16 @@ function Trade() {
       <PlusButton />
 
       {/* 작품 BottomSheet */}
-      <Piece_BottomSheet
-        isOpen={isPieceSheetOpen}
-        onClose={() => setPieceSheetOpen(false)}
-      />
+      <Piece_BottomSheet isOpen={isPieceSheetOpen} onClose={() => setPieceSheetOpen(false)} />
 
       {/* 도구 BottomSheet */}
-      <Tool_BottomSheet
-        isOpen={isToolSheetOpen}
-        onClose={() => setToolSheetOpen(false)}
-      />
+      <Tool_BottomSheet isOpen={isToolSheetOpen} onClose={() => setToolSheetOpen(false)} />
 
       {/* 정렬 BottomSheet */}
-      <ArrayBottomSheet
-        isOpen={isArraySheetOpen}
-        onClose={() => setArraySheetOpen(false)}
-      />
+      <ArrayBottomSheet isOpen={isArraySheetOpen} onClose={() => setArraySheetOpen(false)} />
 
       {/* 검색 오버레이 */}
-      <SearchOverlay
-        isOpen={isSearchOpen}
-        onClose={() => setSearchOpen(false)}
-      />
+      <SearchOverlay isOpen={isSearchOpen} onClose={() => setSearchOpen(false)} />
 
       <Footer />
     </div>

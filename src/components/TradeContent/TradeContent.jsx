@@ -8,9 +8,13 @@ function TradeContent({ trades, CustomTradeItemBox }) {
   const navigate = useNavigate(); //  네비게이션 함수 사용
   const TradeBoxComponent = CustomTradeItemBox || TradeItemBox; // 기본값은 일반 TradeItemBox
 
-  //  클릭 시 상세 페이지로 이동하는 함수
   const handleItemClick = (trade) => {
-    navigate("/trade/detail", { state: { trade } }); // 데이터를 state로 전달
+    console.log("클릭된 아이템:", trade); // 🔹 디버깅을 위해 추가
+    if (onItemClick) {
+      onItemClick(trade);
+    } else {
+      navigate("/trade/detail", { state: { trade } });
+    }
   };
 
   return (

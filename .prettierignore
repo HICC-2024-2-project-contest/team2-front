@@ -1,0 +1,11 @@
+node_modules
+build
+dist
+.next
+public
+*.svg
+*.png
+*.jpg
+*.jpeg
+public/css/
+src/assets/css/legacy-styles.css

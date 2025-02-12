@@ -3,8 +3,10 @@
   display: flex;
   flex-direction: column;
   height: 100vh; /* ✅ 전체 화면 높이 사용 */
-  width: 100vw;
-  overflow-x: hidden; /* 추가 */
+  width: 100%; /* ✅ 화면 넘침 방지 */
+  max-width: 480px; /* ✅ 모바일에서도 넘치지 않도록 설정 */
+  margin: 0 auto; /* ✅ 중앙 정렬 */
+  overflow-x: hidden; /* ✅ 가로 스크롤 제거 */
   overflow-y: auto;
 }
 

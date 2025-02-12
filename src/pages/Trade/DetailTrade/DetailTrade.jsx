@@ -5,7 +5,7 @@ import TradeContent from "../../../components/TradeContent/TradeContent";
 import ExhibitionHeader from "../../../components/ExhibitionBox/ExhibitionHeader/ExhibitionHeader";
 import Footer from "../../../components/Footer/Footer";
 
-const exhibitions = {
+const tradesData = {
   1: {
     id: "1",
     title: "홍익대학교 동양학과 졸업전시",
@@ -45,27 +45,22 @@ const exhibitions = {
   },
 };
 
-const DetailExhibition = () => {
+const DetailTrade = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-  const [exhibition, setExhibition] = useState(null);
-  const [trades, setTrades] = useState([]);
+  const [trade, setTrade] = useState(null);
 
   useEffect(() => {
     if (id) {
-      const selectedExhibition = exhibitions[id.toString()] || null;
-      setExhibition(selectedExhibition);
-
-      if (selectedExhibition) {
-        setTrades(selectedExhibition.trades || []);
-      }
+      const selectedTrade = tradesData[id.toString()] || null;
+      setTrade(selectedTrade);
     }
   }, [id]);
 
-  if (!exhibition) {
+  if (!trade) {
     return (
       <div className={styles.container}>
-        <h2>전시 정보를 불러올 수 없습니다.</h2>
+        <h2>거래 정보를 불러올 수 없습니다.</h2>
         <button className={styles.backButton} onClick={() => navigate(-1)}>
           🔙 돌아가기
         </button>
@@ -74,9 +69,9 @@ const DetailExhibition = () => {
     );
   }
 
-  // ✅ 작품 클릭 시 상세 페이지로 이동하는 함수 추가
-  const handleItemClick = (trade) => {
-    navigate("/trade/detail", { state: { trade } });
+  // 작품 클릭 시 상세 페이지로 이동하는 함수
+  const handleItemClick = (selectedTrade) => {
+    navigate("/trade/detail", { state: { trade: selectedTrade } });
   };
 
   return (
@@ -85,25 +80,26 @@ const DetailExhibition = () => {
 
       <div className={styles.section}>
         <h3>전시 소개</h3>
-        <p>{exhibition.description?.trim() || "설명이 없습니다."}</p>
+        <p>{trade.description?.trim() || "설명이 없습니다."}</p>
       </div>
 
       <div className={styles.section}>
         <h3>구매 가능한 작품</h3>
         <div className={styles.tradeScrollContainer}>
-          {/* ✅ TradeContent에 클릭 이벤트 전달 */}
-          <TradeContent trades={trades} onItemClick={handleItemClick} />
+          <TradeContent trades={trade.trades} onItemClick={handleItemClick} />
         </div>
       </div>
 
       <div className={styles.section}>
         <h3>위치</h3>
-        <p>{exhibition.location?.trim() || "위치 정보 없음"}</p>
+        <p>{trade.location?.trim() || "위치 정보 없음"}</p>
       </div>
 
-      <Footer className={styles.footer} />
+      <div>
+        <Footer />
+      </div>
     </div>
   );
 };
 
-export default DetailExhibition;
+export default DetailTrade;
