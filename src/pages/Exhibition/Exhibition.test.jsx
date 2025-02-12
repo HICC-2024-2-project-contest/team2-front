@@ -1,102 +1,68 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom"; // ✅ useNavigate 추가
-import styles from "./Exhibition.module.css";
-import Header from "../../components/Header/Header";
-import SearchBar from "../../components/Header/SearchBar";
-import FilterHeader from "../../components/Header/FilterHeader";
-import Footer from "../../components/Footer/Footer";
-import ExhibitionBox from "../../components/ExhibitionBox/ExhibitionBox";
-import DetailExhibition from "./DetailExhibition/DetailExhibition";
-import Area_BottomSheet from "../../components/Bottomsheet/Area/Area_BottomSheet";
-import Date_BottomSheet from "../../components/Bottomsheet/Date/Date_BottomSheet";
-import Field_BottomSheet from "../../components/Bottomsheet/Field/Field_BottomSheet";
-import SearchOverlay from "../../components/SearchBox/SearchOverlay";
+import React from "react";
+import { useNavigate } from "react-router-dom";
+import styles from "./ExhibitionBox.module.css";
+import PropTypes from "prop-types";
+import BookmarkIcon from "../../assets/svg/Bookmark.svg?url";
+import BookmarkCIcon from "../../assets/svg/BookmarkC.svg?url";
 
-function Exhibition() {
-  const navigate = useNavigate(); // ✅ 네비게이션 훅 추가
+const ExhibitionBox = ({ exhibition }) => {
+  const navigate = useNavigate();
+  const [bookmarked, setBookmarked] = React.useState(() => {
+    return JSON.parse(localStorage.getItem(`bookmark-${exhibition.id}`)) || false;
+  });
 
-  const [filters, setFilters] = useState([
-    { label: "지역", type: "v" },
-    { label: "날짜", type: "v" },
-    { label: "분야", type: "v" },
-  ]);
-
-  const [selectedExhibition, setSelectedExhibition] = useState(null);
-  const [isSearchOpen, setSearchOpen] = useState(false); // ✅ isSearchOpen 상태 추가
-
-  const [isAreaSheetOpen, setAreaSheetOpen] = useState(false);
-  const [isDateSheetOpen, setDateSheetOpen] = useState(false);
-  const [isFieldSheetOpen, setFieldSheetOpen] = useState(false);
-
-  const handleFilterClick = (filterLabel) => {
-    console.log(`${filterLabel} 클릭됨`);
-
-    if (filterLabel === "지역") {
-      setAreaSheetOpen(true);
-    } else if (filterLabel === "날짜") {
-      setDateSheetOpen(true);
-    } else if (filterLabel === "분야") {
-      setFieldSheetOpen(true);
-    }
-  };
-
-  const handleSelectExhibition = (exhibition) => {
-    if (!exhibition) {
-      console.error("⚠️ 선택된 전시 데이터가 없습니다.", exhibition);
+  // 상세 페이지 이동
+  const handleClick = () => {
+    if (!exhibition.id) {
+      console.error("⚠️ 전시 ID가 존재하지 않습니다!", exhibition);
       return;
     }
-    console.log("✅ 선택된 전시:", exhibition);
-    setSelectedExhibition(exhibition);
+    navigate(`/exhibition/${exhibition.id}`);
   };
 
-  const handleCloseDetail = () => {
-    console.log("🔙 상세 페이지 닫기");
-    setSelectedExhibition(null);
+  // 북마크 버튼 클릭 시 동작
+  const handleBookmarkClick = (e) => {
+    e.stopPropagation();
+    const newBookmarkState = !bookmarked;
+    setBookmarked(newBookmarkState);
+    localStorage.setItem(`bookmark-${exhibition.id}`, JSON.stringify(newBookmarkState));
   };
 
   return (
-    <div className={styles.container}>
-      <Header />
-
-      {/* ✅ 검색 바 추가 */}
-      <div onClick={() => setSearchOpen(true)}>
-        <SearchBar placeholder="전시, 대학명을 검색하세요" />
+    <div className={styles.exhibitionItem} onClick={handleClick}>
+      <div className={styles.exhibitionThumbnail}>
+        <img
+          src={exhibition.poster || "/images/ex1.png"}
+          className={styles.posterImage}
+          alt="전시 포스터"
+        />
+        <span className={styles.exhibitionBadge}>
+          {`D-${Math.max(0, Math.floor((new Date(exhibition.end) - new Date()) / (1000 * 60 * 60 * 24)))}`}
+        </span>
       </div>
 
-      {/* ✅ 필터 헤더 추가 */}
-      <FilterHeader filters={filters} onFilterClick={handleFilterClick} />
-
-      <div className={styles.content}>
-        {selectedExhibition ? (
-          <DetailExhibition exhibition={selectedExhibition} onClose={handleCloseDetail} />
-        ) : (
-          <div className={styles.section}>
-            <h2 className={styles.sectionTitle}>추천 전시</h2>
-            <ExhibitionBox onSelect={handleSelectExhibition} />
-          </div>
-        )}
+      <div className={styles.exhibitionInfo}>
+        <h3 className={styles.exhibitionTitle}>{exhibition.name}</h3>
+        <p className={styles.exhibitionLocation}>{exhibition.location || "위치 정보 없음"}</p>
+        <p className={styles.exhibitionDate}>{`${exhibition.start} ~ ${exhibition.end}`}</p>
       </div>
 
-      {/* 지역 BottomSheet */}
-      <Area_BottomSheet isOpen={isAreaSheetOpen} onClose={() => setAreaSheetOpen(false)} />
-
-      {/* 날짜 BottomSheet */}
-      <Date_BottomSheet isOpen={isDateSheetOpen} onClose={() => setDateSheetOpen(false)} />
-
-      {/* 분야 BottomSheet */}
-      <Field_BottomSheet isOpen={isFieldSheetOpen} onClose={() => setFieldSheetOpen(false)} />
-
-      {/* ✅ 플로팅 버튼 - RegisterExhibition 페이지로 이동 */}
-      <button className={styles.floatingButton} onClick={() => navigate("/register")}>
-        +
+      <button className={styles.bookmarkButton} onClick={handleBookmarkClick}>
+        <img src={bookmarked ? BookmarkCIcon : BookmarkIcon} alt="Bookmark Icon" />
       </button>
-
-      <Footer />
-
-      {/* ✅ 검색 오버레이 추가 */}
-      <SearchOverlay isOpen={isSearchOpen} onClose={() => setSearchOpen(false)} />
     </div>
   );
-}
+};
 
-export default Exhibition;
+ExhibitionBox.propTypes = {
+  exhibition: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    name: PropTypes.string.isRequired,
+    location: PropTypes.string.isRequired,
+    start: PropTypes.string.isRequired,
+    end: PropTypes.string.isRequired,
+    poster: PropTypes.string, // 기본값이 있을 수 있으므로 필수 X
+  }).isRequired,
+};
+
+export default ExhibitionBox;
