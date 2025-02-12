@@ -4,6 +4,7 @@ import Header from "../../components/Header/Header";
 import SearchBar from "../../components/Header/SearchBar";
 import FilterHeader from "../../components/Header/FilterHeader";
 import Footer from "../../components/Footer/Footer";
+import ExhibitionList from "../../components/ExhibitionList/ExhibitionList";
 import PlusButton from "../../components/Button/PlusButton/PlusButton";
 import Region_BottomSheet from "../../components/Bottomsheet/Region/Region_BottomSheet";
 import Date_BottomSheet from "../../components/Bottomsheet/Date/Date_BottomSheet";
@@ -21,6 +22,42 @@ function Exhibition() {
   const [isDateSheetOpen, setDateSheetOpen] = useState(false);
   const [isFieldSheetOpen, setFieldSheetOpen] = useState(false);
   const [isSearchOpen, setSearchOpen] = useState(false);
+  const [exhibitions, setExhibitions] = useState([]);
+
+  useEffect(() => {
+    // 더미 데이터 사용 (추후 API 연동 가능)
+    const fetchExhibitionData = async () => {
+      const data = [
+        {
+          id: "1",
+          title: "홍익대학교 동양학과 전시",
+          location: "서울특별시 마포구",
+          date: "2024.11.04 ~ 2024.11.09",
+          poster: "/images/ex1.png",
+          count: 23,
+        },
+        {
+          id: "2",
+          title: "서울예술대학교 조형전",
+          location: "서울특별시 종로구",
+          date: "2024.12.01 ~ 2024.12.15",
+          poster: "/images/ex2.png",
+          count: 12,
+        },
+        {
+          id: "3",
+          title: "국립현대미술관 특별전",
+          location: "경기도 과천시",
+          date: "2025.01.10 ~ 2025.02.20",
+          poster: "/images/ex3.png",
+          count: 30,
+        },
+      ];
+      setExhibitions(data);
+    };
+
+    fetchExhibitionData();
+  }, []);
 
   // 필터 버튼 클릭 시 동작
   const handleFilterClick = (filterLabel) => {
@@ -41,7 +78,9 @@ function Exhibition() {
       </div>
       <FilterHeader filters={filters} onFilterClick={handleFilterClick} />
 
-      <div className={styles.content}>{/* 전시 콘텐츠 내용 비움 */}</div>
+      <div className={styles.content}>
+        <ExhibitionList exhibitions={exhibitions} />
+      </div>
 
       {/* 플로팅 버튼 추가 */}
       <PlusButton />

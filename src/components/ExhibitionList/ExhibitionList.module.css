@@ -1,0 +1,13 @@
+.container {
+  display: flex;
+  flex-direction: column; /* 세로 방향 정렬 */
+  gap: 10px;
+  padding: 5px;
+  width: 100%;
+  max-width: 460px;
+  margin: auto;
+}
+
+.listItem {
+  width: 100%; /* 전체 너비 사용 */
+}
