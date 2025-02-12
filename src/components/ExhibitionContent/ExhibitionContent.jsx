@@ -5,37 +5,41 @@ import { fetchExhibitions } from "../../api/exhibition-controller/exhibitionServ
 function Exhibition() {
   const [exhibitions, setExhibitions] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [loading, setLoading] = useState(true); // 로딩 상태 추가
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const getExhibitions = async () => {
       try {
+        const today = new Date().toISOString().split("T")[0]; // 오늘 날짜 구하기
+
         const params = {
-          startDate: "2000-01-01",
+          startDate: "2025-02-01",
           endDate: "3000-01-01",
           keyword: "",
           fieldId: null,
           page: 0,
-          size: 4,
+          size: 10,
           sort: "startDate,asc", // 시작 날짜 기준 오름차순 정렬
         };
 
         const data = await fetchExhibitions(params);
 
-        // API 응답 데이터를 변환하여 exhibitions 배열로 저장
-        const formattedExhibitions = data.exhibitions.map((item) => ({
-          id: item.exhibitionDto.id,
-          image: `data:image/png;base64,${item.base64Image}`,
-          name: item.exhibitionDto.name,
-          start: item.exhibitionDto.startDate,
-          end: item.exhibitionDto.endDate,
-        }));
+        // 날짜가 오늘 이후인 전시만 필터링
+        const validExhibitions = data.exhibitions
+          .map((item) => ({
+            id: item.exhibitionDto.id,
+            image: `data:image/png;base64,${item.base64Image}`,
+            name: item.exhibitionDto.name,
+            start: item.exhibitionDto.startDate,
+            end: item.exhibitionDto.endDate,
+          }))
+          .filter((exhibition) => exhibition.end >= today); // 종료일이 오늘 이후인 전시만 포함
 
-        setExhibitions(formattedExhibitions);
+        setExhibitions(validExhibitions.slice(0, 4)); // 최대 4개만 선택
       } catch (error) {
         console.error("전시 데이터를 불러오는 중 오류 발생:", error);
       } finally {
-        setLoading(false); // 로딩 완료
+        setLoading(false);
       }
     };
 
@@ -65,11 +69,13 @@ function Exhibition() {
           {loading ? (
             <div className={styles.placeholder} /> // 로딩 중일 때 회색 박스 표시
           ) : (
-            <img
-              src={exhibitions[currentIndex]?.image}
-              alt={exhibitions[currentIndex]?.name}
-              className={styles.image}
-            />
+            exhibitions.length > 0 && (
+              <img
+                src={exhibitions[currentIndex]?.image}
+                alt={exhibitions[currentIndex]?.name}
+                className={styles.image}
+              />
+            )
           )}
         </div>
         <button

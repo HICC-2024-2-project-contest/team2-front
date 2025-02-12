@@ -1,87 +1,61 @@
-.container {
-  display: flex;
-  flex-direction: column;
-  min-height: auto;
-  overflow-y: auto;
-  overflow-x: hidden;
-  gap: 16px; /*  ExhibitionBox 간 간격 조정 */
-}
-
-.content {
-  flex: 1;
-  overflow-y: auto;
-  padding-bottom: 16px;
-}
-
-/* 추천 전시 리스트 */
-.exhibitionList {
-  padding: 0 16px;
-}
-
 /* 추천 전시 아이템 */
 .exhibitionItem {
   display: flex;
   align-items: center;
   position: relative;
-  padding: 16px;
-  border-bottom: 1px solid #eee;
-  margin-left: 28px;
+  margin-left: 20px;
 }
 
 .exhibitionThumbnail {
-  width: 94px;
-  height: 126px;
-  background-color: #ddd; /* 이미지 자리 */
-  border-radius: 6px;
-  position: relative;
+  max-width: 30%;
+  height: 100%;
+  aspect-ratio: 1 / 1;
   overflow: hidden;
 }
 
 .posterImage {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
 }
 
 .exhibitionInfo {
-  margin-left: 16px;
+  text-align: left;
+  height: 100%;
+  margin-left: 0px;
+  margin: 0px;
   flex: 1;
 }
 
-.exhibitionHeader {
-  display: flex;
-  align-items: center;
-}
-
 .exhibitionTitle {
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 500;
+  margin-top: 0px;
 }
 
 .exhibitionLocation {
-  font-size: 14px;
+  font-size: 12px;
   font-weight: 500;
   color: #767676;
 }
 
 .exhibitionDate {
-  font-size: 14px;
+  font-size: 12px;
   font-weight: 500;
   color: #767676;
 }
 
 .exhibitionCount {
-  font-size: 14px;
+  font-size: 12px;
   color: #a8a8a8;
   font-weight: 500;
-  margin-top: 23px;
 }
 
 .exhibitionBadge {
   position: absolute;
-  top: 8px;
-  left: 8px;
-  font-size: 17px;
+  top: 8%;
+  left: 6%;
+  font-size: 15px;
   background-color: #5a91ff;
   color: white;
   padding: 1px 7px;
@@ -90,7 +64,7 @@
 
 .bookmarkButton {
   position: absolute;
-  top: 38px;
+  top: 10%;
   right: 28px;
   background: none;
   border: none;

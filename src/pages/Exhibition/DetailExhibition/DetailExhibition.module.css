@@ -1,0 +1,192 @@
+/* ✅ 전체 컨테이너 */
+.container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: #ffffff;
+}
+.content {
+  flex: 1; /* ✅ 푸터를 하단으로 밀어내기 위한 설정 */
+  overflow-y: auto;
+  padding: 16px;
+}
+/* ✅ 고정 헤더 */
+.exhibitionHeader {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  background-color: #fff;
+  position: relative;
+  border-bottom: 2px solid #f2f2f2;
+}
+
+/* ✅ 포스터 이미지 */
+.posterContainer {
+  position: relative;
+}
+
+.posterImage {
+  width: 223px;
+  height: 300px;
+  border-radius: 4px;
+  object-fit: cover;
+  margin-top: 35px;
+}
+
+/* ✅ D-day 뱃지 */
+.dday {
+  position: absolute;
+  bottom: 10px;
+  right: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  background-color: #5a91ff;
+  color: white;
+  padding: 2px 8px;
+  border-radius: 12px;
+  text-align: center;
+}
+
+/* ✅ 북마크 버튼 */
+.bookmarkButton {
+  background: none;
+  border: none;
+  cursor: pointer;
+  position: absolute;
+  top: 16px;
+  right: 10px;
+}
+
+.bookmarkIcon {
+  width: 27px;
+  height: 27px;
+}
+
+/* ✅ 전시 정보 */
+.exhibitionInfo {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-top: 10px;
+  text-align: left;
+  width: 100%;
+}
+
+/* ✅ 전시 제목 */
+.exhibitionTitle {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 4px;
+  padding-left: 5px;
+}
+
+/* ✅ 학교 정보 */
+.schoolContainer {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding-left: 5px;
+}
+
+.schoolLogo {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  background-color: white;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.15);
+}
+
+.schoolInfo {
+  display: flex;
+  flex-direction: column;
+}
+
+.schoolName {
+  font-size: 14px;
+  font-weight: 500;
+  color: #767676;
+}
+
+.exhibitionDate {
+  font-size: 14px;
+  font-weight: 500;
+  color: #a8a8a8;
+  margin-top: 4px;
+}
+.fixedHeader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 60px;
+  background: rgba(255, 255, 255, 0.9);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 16px;
+  z-index: 1000;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+}
+/* ✅ 뒤로 가기 버튼 */
+.backButton {
+  position: absolute;
+  top: 16px;
+  left: 10px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  z-index: 10;
+  padding: 0;
+}
+
+.backIcon {
+  width: 14px;
+  height: 24px;
+}
+
+/* ✅ 공통 섹션 스타일 */
+.section {
+  margin-top: 20px;
+  padding-bottom: 10px;
+  padding: 20px;
+}
+
+.section h3 {
+  font-size: 18px;
+  font-weight: 500;
+  margin-bottom: 8px;
+  text-align: left;
+}
+
+/* ✅ 전시 소개 텍스트 */
+.section p {
+  font-size: 12px;
+  color: #767676;
+  text-align: justify;
+  line-height: 1.6;
+}
+
+/* ✅ 작품 목록 (가로 스크롤 가능) */
+.tradeScrollContainer {
+  overflow-x: auto;
+  white-space: nowrap;
+  padding-bottom: 8px;
+}
+
+.tradeScrollContainer > div {
+  display: flex;
+  gap: 12px;
+}
+
+/* ✅ 위치 정보 */
+.location {
+  font-size: 16px;
+  color: #444;
+}
+
+/* ✅ 부드러운 스크롤 효과 */
+html {
+  scroll-behavior: smooth;
+}
