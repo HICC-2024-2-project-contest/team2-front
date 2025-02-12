@@ -33,7 +33,41 @@
   margin-bottom: 10px;
   text-align: left;
 }
+.subtitle {
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
 
+.datePickerContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 18px;
+  padding: 3%;
+}
+
+.dateInput {
+  padding: 14px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 14px;
+  text-align: center;
+  width: 30%;
+}
+
+/* ✅ 플레이스홀더(년-월-일) 스타일 */
+.dateInput::placeholder {
+  font-size: 14px; /* ✅ 폰트 크기 설정 */
+  font-weight: 500; /* ✅ 글씨 두께 설정 */
+  color: #a8a8a8; /* ✅ 연한 회색 */
+  opacity: 1; /* ✅ 일부 브라우저에서 투명도 방지 */
+}
+
+.separator {
+  font-size: 16px;
+  font-weight: bold;
+}
 .buttonContainer {
   display: flex;
   justify-content: center;

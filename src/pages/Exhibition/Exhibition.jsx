@@ -10,6 +10,7 @@ import Region_BottomSheet from "../../components/Bottomsheet/Region/Region_Botto
 import Date_BottomSheet from "../../components/Bottomsheet/Date/Date_BottomSheet";
 import Field_BottomSheet from "../../components/Bottomsheet/Field/Field_BottomSheet";
 import SearchOverlay from "../../components/SearchBox/SearchOverlay";
+import { fetchExhibitions } from "../../api/exhibition-controller/exhibitionService";
 
 function Exhibition() {
   const [filters, setFilters] = useState([
@@ -23,41 +24,61 @@ function Exhibition() {
   const [isFieldSheetOpen, setFieldSheetOpen] = useState(false);
   const [isSearchOpen, setSearchOpen] = useState(false);
   const [exhibitions, setExhibitions] = useState([]);
+  const [page, setPage] = useState(0);
+  const [loading, setLoading] = useState(false);
+  const itemsPerPage = 4;
 
   useEffect(() => {
-    // 더미 데이터 사용 (추후 API 연동 가능)
-    const fetchExhibitionData = async () => {
-      const data = [
-        {
-          id: "1",
-          title: "홍익대학교 동양학과 전시",
-          location: "서울특별시 마포구",
-          date: "2024.11.04 ~ 2024.11.09",
-          poster: "/images/ex1.png",
-          count: 23,
-        },
-        {
-          id: "2",
-          title: "서울예술대학교 조형전",
-          location: "서울특별시 종로구",
-          date: "2024.12.01 ~ 2024.12.15",
-          poster: "/images/ex2.png",
-          count: 12,
-        },
-        {
-          id: "3",
-          title: "국립현대미술관 특별전",
-          location: "경기도 과천시",
-          date: "2025.01.10 ~ 2025.02.20",
-          poster: "/images/ex3.png",
-          count: 30,
-        },
-      ];
-      setExhibitions(data);
-    };
+    getExhibitions();
+  }, [page]); // 🔹 page가 변경될 때만 API 요청 실행
 
-    fetchExhibitionData();
-  }, []);
+  const getExhibitions = async () => {
+    if (loading) return; // 🔹 중복 요청 방지
+    setLoading(true);
+
+    try {
+      const today = new Date().toISOString().split("T")[0]; // 오늘 날짜
+
+      const params = {
+        startDate: "2000-01-01",
+        endDate: "2100-01-01",
+        keyword: "",
+        fieldId: null,
+        page,
+        size: itemsPerPage,
+        sort: "startDate,asc", // 시작 날짜 기준 오름차순 정렬
+      };
+
+      const data = await fetchExhibitions(params);
+
+      // 종료일이 오늘 이후인 전시만 필터링
+      const validExhibitions = data.exhibitions
+        .map((item) => ({
+          id: item.exhibitionDto.id,
+          name: item.exhibitionDto.name,
+          location: item.exhibitionDto.location || "위치 정보 없음",
+          start: item.exhibitionDto.startDate,
+          end: item.exhibitionDto.endDate,
+          poster: item.base64Image
+            ? `data:image/png;base64,${item.base64Image}`
+            : "/images/ex1.png",
+        }))
+        .filter((exhibition) => exhibition.end >= today);
+
+      setExhibitions((prevExhibitions) =>
+        page === 0 ? validExhibitions : [...prevExhibitions, ...validExhibitions]
+      );
+    } catch (error) {
+      console.error("전시 데이터를 불러오는 중 오류 발생:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  // 🔹 "더 보기" 버튼 클릭 시 page 상태 증가 (중복 로드 방지)
+  const loadMoreExhibitions = () => {
+    if (!loading) setPage((prevPage) => prevPage + 1);
+  };
 
   // 필터 버튼 클릭 시 동작
   const handleFilterClick = (filterLabel) => {
@@ -80,6 +101,12 @@ function Exhibition() {
 
       <div className={styles.content}>
         <ExhibitionList exhibitions={exhibitions} />
+        {loading && <p>로딩 중...</p>}
+        {!loading && exhibitions.length > 0 && (
+          <button className={styles.loadMoreButton} onClick={loadMoreExhibitions}>
+            더 보기
+          </button>
+        )}
       </div>
 
       {/* 플로팅 버튼 추가 */}

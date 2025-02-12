@@ -7,9 +7,10 @@ import SelectButton from "../../Button/SelectButton/SelectButton";
 import PriceFilter from "../PriceFilter";
 import XIconURL from "../../../assets/svg/X_icon.svg?url";
 
-const ToolDetail = ({ isOpen, onClose }) => {
+const DateDetail = ({ isOpen, onClose }) => {
   const [selectedType, setSelectedType] = useState("전체");
-
+  const [startDate, setStartDate] = useState("2025.01.25");
+  const [endDate, setEndDate] = useState("2025.01.25");
   const typeFilters = ["전체", "일주일", "1개월", "3개월"];
 
   const handleTypeClick = (filterLabel) => setSelectedType(filterLabel);
@@ -32,6 +33,23 @@ const ToolDetail = ({ isOpen, onClose }) => {
         />
       </div>
 
+      <h3 className={styles.subtitle}>직접 선택</h3>
+      <div className={styles.datePickerContainer}>
+        <input
+          type="date"
+          value={startDate}
+          className={styles.dateInput}
+          onChange={(e) => setStartDate(e.target.value)}
+        />
+        <span className={styles.separator}>—</span>
+        <input
+          type="date"
+          value={endDate}
+          className={styles.dateInput}
+          onChange={(e) => setEndDate(e.target.value)}
+        />
+      </div>
+
       <div className={styles.buttonContainer}>
         <SelectButton label="선택" onClick={onClose} />
       </div>
@@ -39,9 +57,9 @@ const ToolDetail = ({ isOpen, onClose }) => {
   );
 };
 
-ToolDetail.propTypes = {
+DateDetail.propTypes = {
   isOpen: PropTypes.bool.isRequired,
   onClose: PropTypes.func.isRequired,
 };
 
-export default ToolDetail;
+export default DateDetail;

@@ -18,12 +18,12 @@ function ExhibitionList({ exhibitions }) {
 ExhibitionList.propTypes = {
   exhibitions: PropTypes.arrayOf(
     PropTypes.shape({
-      id: PropTypes.string.isRequired,
-      title: PropTypes.string.isRequired,
+      id: PropTypes.number.isRequired,
+      name: PropTypes.string.isRequired,
       location: PropTypes.string.isRequired,
-      date: PropTypes.string.isRequired,
-      count: PropTypes.number.isRequired,
-      poster: PropTypes.string.isRequired,
+      start: PropTypes.string.isRequired,
+      end: PropTypes.string.isRequired,
+      poster: PropTypes.string,
     })
   ).isRequired,
 };

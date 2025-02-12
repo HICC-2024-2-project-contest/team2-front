@@ -4,12 +4,11 @@ import styles from "./ExhibitionBox.module.css";
 import PropTypes from "prop-types";
 import BookmarkIcon from "../../assets/svg/Bookmark.svg?url";
 import BookmarkCIcon from "../../assets/svg/BookmarkC.svg?url";
-import ex1 from "../../assets/images/ex2.png"; // 임시 이미지 추가
 
 const ExhibitionBox = ({ exhibition }) => {
   const navigate = useNavigate();
   const [bookmarked, setBookmarked] = React.useState(() => {
-    return JSON.parse(localStorage.getItem(`bookmark-${exhibition.title}`)) || false;
+    return JSON.parse(localStorage.getItem(`bookmark-${exhibition.id}`)) || false;
   });
 
   // 상세 페이지 이동
@@ -26,21 +25,26 @@ const ExhibitionBox = ({ exhibition }) => {
     e.stopPropagation();
     const newBookmarkState = !bookmarked;
     setBookmarked(newBookmarkState);
-    localStorage.setItem(`bookmark-${exhibition.title}`, JSON.stringify(newBookmarkState));
+    localStorage.setItem(`bookmark-${exhibition.id}`, JSON.stringify(newBookmarkState));
   };
 
   return (
     <div className={styles.exhibitionItem} onClick={handleClick}>
       <div className={styles.exhibitionThumbnail}>
-        <img src={ex1} className={styles.posterImage} alt="전시 포스터" />
-        <span className={styles.exhibitionBadge}>D-1</span>
+        <img
+          src={exhibition.poster || "/images/ex1.png"}
+          className={styles.posterImage}
+          alt="전시 포스터"
+        />
+        <span className={styles.exhibitionBadge}>
+          {`D-${Math.max(0, Math.floor((new Date(exhibition.end) - new Date()) / (1000 * 60 * 60 * 24)))}`}
+        </span>
       </div>
 
       <div className={styles.exhibitionInfo}>
-        <h3 className={styles.exhibitionTitle}>{exhibition.title}</h3>
-        <p className={styles.exhibitionLocation}>{exhibition.location}</p>
-        <p className={styles.exhibitionDate}>{exhibition.date}</p>
-        <p className={styles.exhibitionCount}>판매 작품 수: {exhibition.count}건</p>
+        <h3 className={styles.exhibitionTitle}>{exhibition.name}</h3>
+        <p className={styles.exhibitionLocation}>{exhibition.location || "위치 정보 없음"}</p>
+        <p className={styles.exhibitionDate}>{`${exhibition.start} ~ ${exhibition.end}`}</p>
       </div>
 
       <button className={styles.bookmarkButton} onClick={handleBookmarkClick}>
@@ -52,12 +56,12 @@ const ExhibitionBox = ({ exhibition }) => {
 
 ExhibitionBox.propTypes = {
   exhibition: PropTypes.shape({
-    id: PropTypes.string.isRequired,
-    title: PropTypes.string.isRequired,
+    id: PropTypes.number.isRequired,
+    name: PropTypes.string.isRequired,
     location: PropTypes.string.isRequired,
-    date: PropTypes.string.isRequired,
-    count: PropTypes.number.isRequired,
-    poster: PropTypes.string, // `poster`가 없을 수도 있으므로 `isRequired` 제거
+    start: PropTypes.string.isRequired,
+    end: PropTypes.string.isRequired,
+    poster: PropTypes.string, // 기본값이 있을 수 있으므로 필수 X
   }).isRequired,
 };
 
