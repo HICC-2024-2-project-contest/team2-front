@@ -10,7 +10,7 @@ export const fetchTrades = async (params) => {
     const validStatus = ["NEW", "USED"];
     const statusValue = validStatus.includes(params.status) ? params.status : null;
 
-    const response = await api.get("/api/items/search", {
+    const response = await api.get("/items/search", {
       params: {
         keyword: params.keyword || "", // 기본값 설정
         artworkTypeId: params.artworkTypeId || null,
