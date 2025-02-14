@@ -10,6 +10,7 @@ import Region_BottomSheet from "../../components/Bottomsheet/Region/Region_Botto
 import Date_BottomSheet from "../../components/Bottomsheet/Date/Date_BottomSheet";
 import Field_BottomSheet from "../../components/Bottomsheet/Field/Field_BottomSheet";
 import SearchOverlay from "../../components/SearchBox/SearchOverlay";
+import BackIcon from "../../assets/svg/Back_icon.svg";
 import { fetchExhibitions } from "../../api/exhibition-controller/exhibitionService";
 
 function Exhibition() {
@@ -28,6 +29,11 @@ function Exhibition() {
   const [page, setPage] = useState(0);
   const [loading, setLoading] = useState(false);
   const itemsPerPage = 4;
+
+  const handleResetSearch = () => {
+    setSearchKeyword(""); // 🔹 검색어 초기화
+    setPage(0); // 🔹 페이지 초기화
+  };
 
   useEffect(() => {
     getExhibitions();
@@ -95,8 +101,22 @@ function Exhibition() {
   return (
     <div className={styles.container}>
       <Header />
-      <div onClick={() => setSearchOpen(true)}>
-        <SearchBar placeholder="전시명을 입력하세요" />
+      <div className={styles.header}>
+        {/* 🔹 뒤로 가기 버튼 클릭 시 handleResetSearch 실행 */}
+        <img
+          src={BackIcon}
+          alt="뒤로 가기"
+          className={styles.backIcon}
+          onClick={handleResetSearch}
+        />
+        <div onClick={() => setSearchOpen(true)} className={styles.a}>
+          <SearchBar
+            placeholder="전시명을 입력하세요"
+            value={searchKeyword} // 🔹 검색창에 검색어 반영
+            onChange={(e) => setSearchKeyword(e.target.value)}
+            onSearch={() => getExhibitions()}
+          />
+        </div>
       </div>
       <FilterHeader filters={filters} onFilterClick={handleFilterClick} />
 
