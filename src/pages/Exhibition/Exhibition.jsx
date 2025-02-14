@@ -24,13 +24,14 @@ function Exhibition() {
   const [isFieldSheetOpen, setFieldSheetOpen] = useState(false);
   const [isSearchOpen, setSearchOpen] = useState(false);
   const [exhibitions, setExhibitions] = useState([]);
+  const [searchKeyword, setSearchKeyword] = useState("");
   const [page, setPage] = useState(0);
   const [loading, setLoading] = useState(false);
   const itemsPerPage = 4;
 
   useEffect(() => {
     getExhibitions();
-  }, [page]); // 🔹 page가 변경될 때만 API 요청 실행
+  }, [searchKeyword, page]); // 🔹 page가 변경될 때만 API 요청 실행
 
   const getExhibitions = async () => {
     if (loading) return; // 🔹 중복 요청 방지
@@ -42,7 +43,7 @@ function Exhibition() {
       const params = {
         startDate: "2000-01-01",
         endDate: "2100-01-01",
-        keyword: "",
+        keyword: searchKeyword, //
         fieldId: null,
         page,
         size: itemsPerPage,
@@ -122,7 +123,12 @@ function Exhibition() {
       <Field_BottomSheet isOpen={isFieldSheetOpen} onClose={() => setFieldSheetOpen(false)} />
 
       {/* 검색 오버레이 */}
-      <SearchOverlay isOpen={isSearchOpen} onClose={() => setSearchOpen(false)} type="exhibition" />
+      <SearchOverlay
+        isOpen={isSearchOpen}
+        onClose={() => setSearchOpen(false)}
+        type="exhibition"
+        onSearch={setSearchKeyword}
+      />
 
       <Footer />
     </div>

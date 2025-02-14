@@ -5,26 +5,23 @@ import SearchBar from "../Header/SearchBar";
 import BackIcon from "../../assets/svg/Back_icon.svg";
 import RecentSearch from "./RecentSearch";
 
-const SearchOverlay = ({ isOpen, onClose, type }) => {
+const SearchOverlay = ({ isOpen, onClose, type, onSearch }) => {
   const [searchTerm, setSearchTerm] = useState("");
 
-  // 검색 실행 시 API 호출
+  // 검색 실행 시 API 호출 및 검색어 저장
   const handleSearch = async (term) => {
     if (!term.trim()) return;
 
+    // 최근 검색어 저장
     const storedSearches = JSON.parse(localStorage.getItem(`recentSearches-${type}`)) || [];
     const updatedSearches = [term, ...storedSearches].slice(0, 10);
     localStorage.setItem(`recentSearches-${type}`, JSON.stringify(updatedSearches));
 
-    console.log(`${type} 검색 실행:`, term);
-
-    if (type === "exhibition") {
-      console.log("전시 검색 API 호출");
-    } else if (type === "trade") {
-      console.log("거래 검색 API 호출");
-    }
+    // 검색어 전달
+    onSearch(term);
 
     setSearchTerm("");
+    onClose(); // 검색 후 오버레이 닫기
   };
 
   if (!isOpen) return null;
@@ -39,12 +36,12 @@ const SearchOverlay = ({ isOpen, onClose, type }) => {
           }
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
+          onSearch={() => handleSearch(searchTerm)} // 🔹 검색 버튼 클릭 시 실행
           onKeyPress={(e) => e.key === "Enter" && handleSearch(searchTerm)}
         />
       </div>
 
       <RecentSearch onSearch={handleSearch} />
-      <div className={styles.results}></div>
     </div>
   );
 };
@@ -53,6 +50,7 @@ SearchOverlay.propTypes = {
   isOpen: PropTypes.bool.isRequired,
   onClose: PropTypes.func.isRequired,
   type: PropTypes.oneOf(["exhibition", "trade"]).isRequired,
+  onSearch: PropTypes.func.isRequired, // 🔹 검색 실행 시 호출할 함수
 };
 
 export default SearchOverlay;
