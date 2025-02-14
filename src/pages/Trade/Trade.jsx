@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from 'react';
-import styles from './Trade.module.css';
+import React, { useState, useEffect } from "react";
+import styles from "./Trade.module.css";
 import Header from "../../components/Header/Header";
-import SearchBar from '../../components/Header/SearchBar';
-import FilterHeader from '../../components/Header/FilterHeader';
-import Piece_BottomSheet from '../../components/Bottomsheet/Piece/Piece_BottomSheet';
-import Tool_BottomSheet from '../../components/Bottomsheet/Tool/Tool_BottomSheet';
+import SearchBar from "../../components/Header/SearchBar";
+import FilterHeader from "../../components/Header/FilterHeader";
+import Piece_BottomSheet from "../../components/Bottomsheet/Piece/Piece_BottomSheet";
+import Tool_BottomSheet from "../../components/Bottomsheet/Tool/Tool_BottomSheet";
 import ArrayBottomSheet from "../../components/Bottomsheet/Array/Array_BottomSheet";
 import Footer from "../../components/Footer/Footer";
 import TradeContent from "../../components/TradeContent/TradeContent";
@@ -35,7 +35,7 @@ function Trade() {
       ];
       setTrades(data);
     };
-    
+
     fetchData();
   }, []);
 
@@ -44,8 +44,8 @@ function Trade() {
     if (filterLabel === "작품") {
       setPieceSheetOpen(true);
     } else if (filterLabel === "도구") {
-      setToolSheetOpen(true); 
-    } else if (filterLabel === "정렬") { 
+      setToolSheetOpen(true);
+    } else if (filterLabel === "정렬") {
       setArraySheetOpen(true);
     }
   };
@@ -71,13 +71,13 @@ function Trade() {
       <Piece_BottomSheet isOpen={isPieceSheetOpen} onClose={() => setPieceSheetOpen(false)} />
 
       {/* 도구 BottomSheet */}
-      <Tool_BottomSheet isOpen={isToolSheetOpen} onClose={() => setToolSheetOpen(false)} /> 
-      
+      <Tool_BottomSheet isOpen={isToolSheetOpen} onClose={() => setToolSheetOpen(false)} />
+
       {/* 정렬 BottomSheet */}
       <ArrayBottomSheet isOpen={isArraySheetOpen} onClose={() => setArraySheetOpen(false)} />
-      
+
       {/* 검색 오버레이 */}
-      <SearchOverlay isOpen={isSearchOpen} onClose={() => setSearchOpen(false)} />
+      <SearchOverlay isOpen={isSearchOpen} onClose={() => setSearchOpen(false)} type="trade" />
 
       <Footer />
     </div>

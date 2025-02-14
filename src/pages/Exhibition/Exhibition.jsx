@@ -122,7 +122,7 @@ function Exhibition() {
       <Field_BottomSheet isOpen={isFieldSheetOpen} onClose={() => setFieldSheetOpen(false)} />
 
       {/* 검색 오버레이 */}
-      <SearchOverlay isOpen={isSearchOpen} onClose={() => setSearchOpen(false)} />
+      <SearchOverlay isOpen={isSearchOpen} onClose={() => setSearchOpen(false)} type="exhibition" />
 
       <Footer />
     </div>
