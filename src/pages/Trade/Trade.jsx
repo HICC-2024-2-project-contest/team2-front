@@ -33,7 +33,7 @@ function Trade() {
     const fetchData = async () => {
       const data = [
         {
-          id: 1,
+          id: "1",
           image: sample1,
           title: "작품 A",
           price: "50,000원",
@@ -41,7 +41,7 @@ function Trade() {
           user: "김작가",
         },
         {
-          id: 2,
+          id: "2",
           image: sample1,
           title: "작품 B",
           price: "70,000원",
@@ -49,7 +49,7 @@ function Trade() {
           user: "이화백",
         },
         {
-          id: 3,
+          id: "3",
           image: sample1,
           title: "작품 C",
           price: "90,000원",
@@ -76,7 +76,7 @@ function Trade() {
 
   const handleItemClick = (trade) => {
     console.log("이동할 데이터:", trade); // 🔹 디버깅 추가
-    navigate(`/trade/detail`, { state: { trade } }); // 🔹 state 전달 방식 확인
+    navigate(`/trade/detail/${trade.id}`); //  id 추가하여 이동
   };
 
   const [isSearchOpen, setSearchOpen] = useState(false);
@@ -90,7 +90,7 @@ function Trade() {
       <FilterHeader filters={filters} onFilterClick={handleFilterClick} />
 
       <div className={styles.content}>
-        {/*  TradeContent에 onItemClick 이벤트 전달 */}
+        {/*  TradeContent에 onItemClick 전달 */}
         <TradeContent trades={trades} onItemClick={handleItemClick} />
       </div>
 

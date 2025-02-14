@@ -1,34 +1,40 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { useNavigate } from "react-router-dom"; //  페이지 이동을 위한 훅 추가
+import { useNavigate } from "react-router-dom";
 import styles from "./TradeContent.module.css";
 import TradeItemBox from "../TradeItemBox/TradeItemBox";
 
-function TradeContent({ trades, CustomTradeItemBox }) {
-  const navigate = useNavigate(); //  네비게이션 함수 사용
-  const TradeBoxComponent = CustomTradeItemBox || TradeItemBox; // 기본값은 일반 TradeItemBox
+function TradeContent({ trades, onItemClick }) {
+  const navigate = useNavigate();
 
   const handleItemClick = (trade) => {
-    console.log("클릭된 아이템:", trade); // 🔹 디버깅을 위해 추가
+    console.log(" TradeContent에서 클릭된 아이템:", trade); // 🔹 디버깅 추가
     if (onItemClick) {
       onItemClick(trade);
     } else {
-      navigate("/trade/detail", { state: { trade } });
+      navigate(`/trade/detail/${trade.id}`);
     }
   };
 
   return (
     <div className={styles.container}>
       {trades.map((trade, index) => (
-        <TradeBoxComponent
+        <div
           key={index}
-          image={trade.image}
-          title={trade.title}
-          price={trade.price}
-          daysAgo={trade.daysAgo}
-          user={trade.user}
-          onClick={() => handleItemClick(trade)} // ✅ 클릭 시 이벤트 실행
-        />
+          onClick={() => {
+            console.log(" 클릭 이벤트 실행");
+            handleItemClick(trade);
+          }}
+          className={styles.tradeItem}
+        >
+          <TradeItemBox
+            image={trade.image}
+            title={trade.title}
+            price={trade.price}
+            daysAgo={trade.daysAgo}
+            user={trade.user}
+          />
+        </div>
       ))}
     </div>
   );
@@ -44,7 +50,7 @@ TradeContent.propTypes = {
       user: PropTypes.string.isRequired,
     })
   ).isRequired,
-  CustomTradeItemBox: PropTypes.elementType, // 선택적으로 다른 TradeItemBox를 사용할 수 있도록 설정
+  onItemClick: PropTypes.func,
 };
 
 export default TradeContent;

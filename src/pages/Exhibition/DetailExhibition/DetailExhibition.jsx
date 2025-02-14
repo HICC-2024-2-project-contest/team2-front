@@ -85,7 +85,7 @@ const DetailExhibition = () => {
       </div>
 
       <div className={styles.section}>
-        <h3>구매 가능한 작품</h3>
+        <h3>유사 상품</h3>
         <div className={styles.tradeScrollContainer}>
           {" "}
           {/* ✅ 가로 스크롤 컨테이너 추가 */}

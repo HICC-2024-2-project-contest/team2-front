@@ -1,11 +1,11 @@
 .container {
   display: flex;
   flex-direction: column;
-  padding: 16px;
   background-color: #ffffff;
-  min-height: 100vh;
+  height: 100vh;
+  overflow-y: auto; /* 🔹 세로 스크롤 가능하도록 설정 */
+  padding: 16px;
   padding-bottom: 60px; /* ✅ 푸터 높이만큼 여백 추가 */
-  overflow-y: auto;
 }
 
 /* 뒤로 가기 버튼 */
@@ -17,14 +17,6 @@
   background: none;
   border: none;
   cursor: pointer;
-}
-.container {
-  display: flex;
-  flex-direction: column;
-  background-color: #ffffff;
-  height: 100vh;
-  overflow-y: auto; /* 🔹 세로 스크롤 가능하도록 설정 */
-  padding: 16px;
 }
 
 /* 고정 헤더 */
@@ -62,8 +54,8 @@
 /* 섹션 공통 스타일 */
 .section {
   margin-top: 0px;
-  padding-bottom: 10px; /* 🔹 스크롤 시 여백 추가 */
   padding: 20px;
+  padding-bottom: 10px; /* 🔹 스크롤 시 여백 추가 */
 }
 
 .section h3 {
@@ -73,12 +65,12 @@
   text-align: left; /*  왼쪽 정렬 */
 }
 
-/* 전시 소개 내용  */
+/* 전시 소개 내용 */
 .section p {
   font-size: 12px;
   color: #767676;
   text-align: justify;
-  line-height: 1.6; /*  줄 간격  */
+  line-height: 1.6; /*  줄 간격 */
 }
 
 /* 구매 가능한 작품을 가로 스크롤 가능하도록 설정 */

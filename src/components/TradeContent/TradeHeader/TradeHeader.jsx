@@ -3,8 +3,8 @@ import { useNavigate } from "react-router-dom";
 import PropTypes from "prop-types";
 import styles from "./TradeHeader.module.css";
 import sample1 from "../../../assets/images/ex1.png";
-import BookmarkIcon from "../../../assets/svg/Bookmark.svg";
-import BookmarkCIcon from "../../../assets/svg/BookmarkC.svg";
+import HeartEmpty from "../../../assets/svg/Hearth_empty.svg";
+import HeartFull from "../../../assets/svg/Hearth_full.svg";
 import BackIcon from "../../../assets/svg/Back_icon.svg";
 
 const TradeHeader = ({ trade }) => {
@@ -17,28 +17,27 @@ const TradeHeader = ({ trade }) => {
 
   return (
     <div className={styles.tradeHeader}>
-      {/* ✅ 뒤로 가기 버튼 */}
+      {/*  뒤로 가기 버튼 */}
       <button className={styles.backButton} onClick={() => navigate(-1)}>
         <img src={BackIcon} alt="Back Icon" className={styles.backIcon} />
       </button>
 
-      {/* ✅ 포스터 이미지 & D-day */}
+      {/*  포스터 이미지 & D-day */}
       <div className={styles.posterContainer}>
         <img src={sample1} className={styles.posterImage} alt="Trade Poster" />
-        <span className={styles.dday}>D-{trade.dday}</span>{" "}
-        {/* ✅ D-day 우측 하단 배치 */}
+        <span className={styles.dday}>D-{trade.dday}</span>
       </div>
 
-      {/* ✅ 북마크 버튼 */}
+      {/*  하트 버튼 (북마크 변경) */}
       <button className={styles.bookmarkButton} onClick={handleBookmarkClick}>
         <img
-          src={isBookmarked ? BookmarkCIcon : BookmarkIcon}
-          alt="Bookmark Icon"
+          src={isBookmarked ? HeartFull : HeartEmpty}
+          alt="Heart Icon"
           className={styles.bookmarkIcon}
         />
       </button>
 
-      {/* ✅ 거래 정보 */}
+      {/*  거래 정보 */}
       <div className={styles.tradeInfo}>
         <h2 className={styles.tradeTitle}>{trade.title}</h2>
         <div className={styles.sellerContainer}>
