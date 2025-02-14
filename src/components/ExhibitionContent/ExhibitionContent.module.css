@@ -19,12 +19,21 @@
 .navButton {
   background-color: transparent;
   border: none;
-  font-size: 1.5rem;
   cursor: pointer;
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ✅ SVG 아이콘 크기 조절 */
+.navIcon {
+  width: 35px; /* 아이콘 크기 */
+  padding: auto;
 }
 
 .imageContainer {
-  width: 75%;
+  width: 100%;
   max-width: 400px;
   aspect-ratio: 1 / 1; /* 정사각형 유지 */
   height: 100%;

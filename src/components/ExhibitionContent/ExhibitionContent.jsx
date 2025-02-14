@@ -1,16 +1,22 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import styles from "./ExhibitionContent.module.css";
 import { fetchExhibitions } from "../../api/exhibition-controller/exhibitionService";
 
-function Exhibition() {
+// ✅ SVG 아이콘을 URL로 가져오기
+import LeftIcon from "../../assets/svg/Left.svg?url";
+import RightIcon from "../../assets/svg/Right.svg?url";
+
+function ExhibitionContent() {
   const [exhibitions, setExhibitions] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [loading, setLoading] = useState(true);
+  const navigate = useNavigate(); // ✅ 페이지 이동을 위한 useNavigate 추가
 
   useEffect(() => {
     const getExhibitions = async () => {
       try {
-        const today = new Date().toISOString().split("T")[0]; // 오늘 날짜 구하기
+        const today = new Date().toISOString().split("T")[0];
 
         const params = {
           startDate: "2025-02-01",
@@ -19,12 +25,11 @@ function Exhibition() {
           fieldId: null,
           page: 0,
           size: 10,
-          sort: "startDate,asc", // 시작 날짜 기준 오름차순 정렬
+          sort: "startDate,asc",
         };
 
         const data = await fetchExhibitions(params);
 
-        // 날짜가 오늘 이후인 전시만 필터링
         const validExhibitions = data.exhibitions
           .map((item) => ({
             id: item.exhibitionDto.id,
@@ -33,9 +38,9 @@ function Exhibition() {
             start: item.exhibitionDto.startDate,
             end: item.exhibitionDto.endDate,
           }))
-          .filter((exhibition) => exhibition.end >= today); // 종료일이 오늘 이후인 전시만 포함
+          .filter((exhibition) => exhibition.end >= today);
 
-        setExhibitions(validExhibitions.slice(0, 4)); // 최대 4개만 선택
+        setExhibitions(validExhibitions.slice(0, 4));
       } catch (error) {
         console.error("전시 데이터를 불러오는 중 오류 발생:", error);
       } finally {
@@ -54,20 +59,31 @@ function Exhibition() {
     setCurrentIndex((prevIndex) => (prevIndex === 0 ? exhibitions.length - 1 : prevIndex - 1));
   };
 
+  // ✅ 전시 이미지 클릭 시 상세 페이지로 이동
+  const handleImageClick = () => {
+    if (exhibitions[currentIndex]?.id) {
+      navigate(`/exhibition/${exhibitions[currentIndex].id}`);
+    } else {
+      console.error("⚠️ 전시 ID가 존재하지 않습니다!", exhibitions[currentIndex]);
+    }
+  };
+
   return (
     <div className={styles.container}>
       <h1 className={styles.title}>현재 전시</h1>
       <div className={styles.slider}>
+        {/* ✅ 왼쪽 이동 버튼 */}
         <button
           className={styles.navButton}
           onClick={handlePrev}
           disabled={loading || exhibitions.length === 0}
         >
-          {"<"}
+          <img src={LeftIcon} alt="왼쪽 이동" className={styles.navIcon} />
         </button>
-        <div className={styles.imageContainer}>
+
+        <div className={styles.imageContainer} onClick={handleImageClick}>
           {loading ? (
-            <div className={styles.placeholder} /> // 로딩 중일 때 회색 박스 표시
+            <div className={styles.placeholder} />
           ) : (
             exhibitions.length > 0 && (
               <img
@@ -78,14 +94,17 @@ function Exhibition() {
             )
           )}
         </div>
+
+        {/* ✅ 오른쪽 이동 버튼 */}
         <button
           className={styles.navButton}
           onClick={handleNext}
           disabled={loading || exhibitions.length === 0}
         >
-          {">"}
+          <img src={RightIcon} alt="오른쪽 이동" className={styles.navIcon} />
         </button>
       </div>
+
       {loading ? null : exhibitions.length > 0 ? (
         <div className={styles.info}>
           <h3>{exhibitions[currentIndex].name}</h3>
@@ -103,4 +122,4 @@ function Exhibition() {
   );
 }
 
-export default Exhibition;
+export default ExhibitionContent;

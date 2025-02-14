@@ -16,3 +16,20 @@
 }
 
 /* 예시입니다 */
+.backIcon {
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  padding: 15px;
+  gap: 12px;
+  width: 100%;
+}
+
+.a {
+  width: 100%;
+}

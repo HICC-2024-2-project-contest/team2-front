@@ -1,0 +1,131 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: #ffffff;
+}
+.content {
+  flex: 1;
+  padding: 16px;
+  overflow-y: auto;
+}
+
+/* ✅ 고정 헤더 */
+.tradeHeader {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  background-color: #fff;
+  position: relative;
+  border-bottom: 2px solid #f2f2f2;
+}
+
+.backButton {
+  position: absolute;
+  top: 16px;
+  left: 10px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  z-index: 10;
+  padding: 0;
+}
+
+.backIcon {
+  width: 14px;
+  height: 24px;
+}
+
+/* ✅ 포스터 이미지 */
+.posterContainer {
+  position: relative;
+}
+
+.posterImage {
+  width: 223px;
+  height: 300px;
+  border-radius: 4px;
+  object-fit: cover;
+  margin-top: 35px;
+}
+
+/* ✅ 북마크 버튼 */
+.bookmarkButton {
+  background: none;
+  border: none;
+  cursor: pointer;
+  position: absolute;
+  top: 16px;
+  right: 10px;
+}
+
+.bookmarkIcon {
+  width: 27px;
+  height: 27px;
+}
+
+/* ✅ 거래 정보 */
+.tradeInfo {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-top: 10px;
+  text-align: left;
+  width: 100%;
+}
+
+/* ✅ 거래 제목 */
+.tradeTitle {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 4px;
+  padding-left: 5px;
+}
+
+/* ✅ 가격 정보 */
+.price {
+  font-size: 20px;
+  font-weight: bold;
+  color: #000000;
+}
+
+/* ✅ 등록일 */
+.createdTime {
+  font-size: 14px;
+  color: #767676;
+  margin-top: 4px;
+}
+
+/* ✅ 공통 섹션 스타일 */
+.section {
+  margin-top: 20px;
+  padding-bottom: 10px;
+  padding: 20px;
+}
+
+.section h3 {
+  font-size: 18px;
+  font-weight: 500;
+  margin-bottom: 8px;
+  text-align: left;
+}
+
+/* ✅ 소개 텍스트 */
+.section p {
+  font-size: 14px;
+  color: #767676;
+  text-align: justify;
+  line-height: 1.6;
+}
+
+/* ✅ 위치 정보 */
+.location {
+  font-size: 16px;
+  color: #444;
+}
+
+/* ✅ 부드러운 스크롤 효과 */
+html {
+  scroll-behavior: smooth;
+}

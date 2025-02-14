@@ -1,7 +1,7 @@
 import axios from "axios";
 
 // 환경변수를 사용하여 API URL 설정
-const API_BASE_URL = import.meta.env.VITE_API_URL || "http://13.209.249.144:8080/api";
+const API_BASE_URL = import.meta.env.VITE_API_URL;
 
 const api = axios.create({
   baseURL: API_BASE_URL,
