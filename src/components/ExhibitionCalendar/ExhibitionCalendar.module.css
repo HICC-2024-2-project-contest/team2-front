@@ -11,6 +11,13 @@
   border-radius: 8px; /* 각 날짜 셀을 둥글게 */
 }
 
+/* 현재 날짜 배경색 변경 */
+.react-calendar__tile--now {
+  background-color: #81abff !important; /* 원하는 색상으로 변경 */
+  color: #000 !important; /* 글자색 변경 */
+  border-radius: 50%; /* 원형 스타일 유지 */
+}
+
 .calendarContainer {
   position: relative;
   text-align: center;
@@ -38,7 +45,7 @@
   cursor: pointer;
   border-radius: 5px;
   width: 100%;
-  font-size: 16px;
+  font-size: 14px;
 }
 
 .dotContainer {
@@ -50,9 +57,9 @@
 .dot {
   width: 6px;
   height: 6px;
-  background-color: blue;
+  background-color: #5a91ff;
   border-radius: 50%;
-  margin: 2px;
+  margin: 2.5px;
 }
 
 /* 모달 스타일 */

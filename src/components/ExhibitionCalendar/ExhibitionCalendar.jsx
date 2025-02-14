@@ -4,28 +4,49 @@ import styles from "./ExhibitionCalendar.module.css";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 
+// 날짜 문자열을 Date 객체로 변환하는 함수
+const parseDate = (dateStr) => {
+  return new Date(dateStr.replace(/-/g, "/"));
+};
+
+// 시작일부터 종료일까지 모든 날짜 배열을 반환하는 함수
+const getDateRange = (start, end) => {
+  let dates = [];
+  let currentDate = new Date(start);
+  const endDate = new Date(end);
+
+  while (currentDate <= endDate) {
+    dates.push(
+      currentDate.toISOString().split("T")[0] // YYYY-MM-DD 형식
+    );
+    currentDate.setDate(currentDate.getDate() + 1);
+  }
+
+  return dates;
+};
+
 const ExhibitionCalendar = ({ exhibitions }) => {
   const [selectedDate, setSelectedDate] = useState(null);
   const [isExpanded, setIsExpanded] = useState(false);
 
   // 날짜별 전시 데이터를 그룹화
   const exhibitionMap = exhibitions.reduce((acc, exhibition) => {
-    const date = exhibition.date;
-    if (!acc[date]) acc[date] = [];
-    acc[date].push(exhibition);
+    const [startDate, endDate] = exhibition.dateRange.split(" ~ ");
+
+    if (startDate && endDate) {
+      const dateList = getDateRange(startDate, endDate);
+      dateList.forEach((date) => {
+        if (!acc[date]) acc[date] = [];
+        acc[date].push(exhibition);
+      });
+    }
+
     return acc;
   }, {});
 
-  // 날짜 선택 핸들러 (UTC 문제 해결)
+  // 날짜 선택 핸들러
   const handleDateClick = (date) => {
-    const formattedDate = date
-      .toLocaleDateString("ko-KR", {
-        year: "numeric",
-        month: "2-digit",
-        day: "2-digit",
-      })
-      .replace(/. /g, "-")
-      .replace(".", ""); // YYYY-MM-DD 형식 변환
+    const formattedDate = date.toISOString().split("T")[0]; // YYYY-MM-DD 형식 변환
     setSelectedDate(formattedDate);
   };
 
@@ -34,21 +55,10 @@ const ExhibitionCalendar = ({ exhibitions }) => {
       <Calendar
         onClickDay={handleDateClick}
         tileContent={({ date }) => {
-          const formattedDate = date
-            .toLocaleDateString("ko-KR", {
-              year: "numeric",
-              month: "2-digit",
-              day: "2-digit",
-            })
-            .replace(/. /g, "-")
-            .replace(".", ""); // YYYY-MM-DD 형식 변환
+          const formattedDate = date.toISOString().split("T")[0];
           const exhibitionsOnDate = exhibitionMap[formattedDate];
 
-          if (
-            !Array.isArray(exhibitionsOnDate) ||
-            exhibitionsOnDate.length === 0
-          )
-            return null;
+          if (!exhibitionsOnDate) return null;
 
           return (
             <div className={styles.dotContainer}>
@@ -60,14 +70,9 @@ const ExhibitionCalendar = ({ exhibitions }) => {
         }}
         maxDetail="month"
         minDetail="month"
-        className={
-          isExpanded ? styles.expandedCalendar : styles.collapsedCalendar
-        }
+        className={isExpanded ? styles.expandedCalendar : styles.collapsedCalendar}
       />
-      <button
-        className={styles.toggleButton}
-        onClick={() => setIsExpanded(!isExpanded)}
-      >
+      <button className={styles.toggleButton} onClick={() => setIsExpanded(!isExpanded)}>
         {isExpanded ? "접기" : "펼치기"}
       </button>
 
@@ -75,10 +80,7 @@ const ExhibitionCalendar = ({ exhibitions }) => {
       {selectedDate && (
         <div className={styles.modal}>
           <div className={styles.modalContent}>
-            <button
-              className={styles.closeButton}
-              onClick={() => setSelectedDate(null)}
-            >
+            <button className={styles.closeButton} onClick={() => setSelectedDate(null)}>
               ✕
             </button>
             <h3>{selectedDate}</h3>
@@ -91,9 +93,7 @@ const ExhibitionCalendar = ({ exhibitions }) => {
                 </div>
               ))
             ) : (
-              <p className={styles.noExhibition}>
-                해당 날짜에 전시가 없습니다.
-              </p>
+              <p className={styles.noExhibition}>해당 날짜에 전시가 없습니다.</p>
             )}
           </div>
         </div>
@@ -105,10 +105,9 @@ const ExhibitionCalendar = ({ exhibitions }) => {
 ExhibitionCalendar.propTypes = {
   exhibitions: PropTypes.arrayOf(
     PropTypes.shape({
-      date: PropTypes.string.isRequired,
+      dateRange: PropTypes.string.isRequired, // 날짜 범위
       title: PropTypes.string.isRequired,
       location: PropTypes.string.isRequired,
-      dateRange: PropTypes.string.isRequired,
     })
   ).isRequired,
 };

@@ -93,26 +93,23 @@ function Home() {
         <SearchBar placeholder="검색어를 입력하세요" />
       </div>
 
-      {/* 전시 캘린더 (스크롤 가능) */}
       <div className={styles.content}>
-        <h2 className={styles.sectionTitle}>나만의 전시 캘린더</h2>
-        <div className={styles.exhibitionCalendarContainer}>
-          <ExhibitionCalendar exhibitions={exhibitions} />
-        </div>
+        {/* 전시 캘린더 (전시 탭에서만 보이도록 수정) */}
+        {activeTab === "exhibition" && (
+          <div className={styles.content}>
+            <h2 className={styles.sectionTitle}>나만의 전시 캘린더</h2>
+            <div className={styles.exhibitionCalendarContainer}>
+              <ExhibitionCalendar exhibitions={exhibitions} />
+            </div>
+          </div>
+        )}
 
         {/* 전시/거래 콘텐츠 */}
-        {activeTab === "exhibition" ? (
-          <ExhibitionContent />
-        ) : (
-          <TradeContent trades={trades} />
-        )}
+        {activeTab === "exhibition" ? <ExhibitionContent /> : <TradeContent trades={trades} />}
       </div>
 
       <Footer />
-      <SearchOverlay
-        isOpen={isSearchOpen}
-        onClose={() => setSearchOpen(false)}
-      />
+      <SearchOverlay isOpen={isSearchOpen} onClose={() => setSearchOpen(false)} />
     </div>
   );
 }
