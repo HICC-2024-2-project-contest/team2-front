@@ -13,7 +13,7 @@ import MyPage_Trade_scrap from "./pages/MyPage/MyPage_Trade/MyPage_Trade_scrap";
 import Login from "./pages/Login/Login";
 import Chat from "./pages/Chat/Chat";
 import TestAPI from "./pages/TestAPI";
-
+// import UserInfo from "./pages/UserInfo/UserInfo";
 import "./App.css";
 
 function App() {
@@ -34,6 +34,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/chat" element={<Chat />} />
           <Route path="/test-api" element={<TestAPI />} /> {/* API 테스트 페이지 추가 */}
+          {/* <Route path="/user-info" element={<UserInfo />} /> */}
         </Routes>
       </div>
     </Router>

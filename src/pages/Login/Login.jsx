@@ -14,12 +14,12 @@ const Login = () => {
 
   return (
     <div className={styles.container}>
-      <div className={styles.content}>  
+      <div className={styles.content}>
         <img src={MoaramLogo} alt="MOARAM Logo" className={styles.logo} />
         <p className={styles.subtitle}>간편하게 로그인하고</p>
         <p className={styles.subtitle}>다양한 서비스를 경험해보세요</p>
         <button className={styles.kakaoButton} onClick={handleKakaoLogin}>
-            <img src={kakaoLoginImage} alt="카카오 로그인" className={styles.kakaoImage} />
+          <img src={kakaoLoginImage} alt="카카오 로그인" className={styles.kakaoImage} />
         </button>
       </div>
       <Footer />
