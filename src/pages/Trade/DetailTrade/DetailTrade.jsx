@@ -3,7 +3,6 @@ import { useParams, useNavigate } from "react-router-dom";
 import styles from "./DetailTrade.module.css";
 import { fetchTradeItemById } from "../../../api/trade-controller/tradeServiceId";
 import Footer from "../../../components/Footer/Footer";
-import ExhibitionBox from "../../../components/ExhibitionBox/ExhibitionBox";
 import BackIcon from "../../../assets/svg/Back_icon.svg";
 import BookmarkIcon from "../../../assets/svg/Bookmark.svg";
 import BookmarkCIcon from "../../../assets/svg/BookmarkC.svg";
@@ -21,29 +20,19 @@ const DetailTrade = () => {
     }
   }, [id]);
 
-  const loadTradeDetails = async (itemId) => {
+  const loadTradeDetails = async (tradeId) => {
     try {
-      const data = await fetchTradeItemById(itemId);
+      const data = await fetchTradeItemById(tradeId);
       setTradeItem({
-        id: data.itemDto.id,
-        name: data.itemDto.name,
-        location: data.itemDto.location || "거래 위치 정보 없음",
-        price: data.itemDto.price,
-        description: data.itemDto.description || "상품 소개 없음",
-        createdTime: data.itemDto.createdTime,
-        exhibition: data.itemDto.exhibitionDto
-          ? {
-              id: data.itemDto.exhibitionDto.id,
-              name: data.itemDto.exhibitionDto.name,
-              location: data.itemDto.exhibitionDto.location || "위치 정보 없음",
-              start: data.itemDto.exhibitionDto.startDate,
-              end: data.itemDto.exhibitionDto.endDate,
-              poster: data.base64Images?.[0]
-                ? `data:image/png;base64,${data.base64Images[0]}`
-                : "/images/ex1.png",
-            }
-          : null,
-        images: data.base64Images.map((image) => `data:image/png;base64,${image}`),
+        id: data.itemDto?.id || 0,
+        name: data.itemDto?.name || "상품명 없음",
+        location: data.itemDto?.location || "거래 위치 정보 없음",
+        price: data.itemDto?.price || "가격 정보 없음",
+        description: data.itemDto?.description || "상품 소개 없음",
+        createdTime: data.itemDto?.createdTime || "등록일 정보 없음",
+        poster: (data.base64Images || [])[0]
+          ? `data:image/png;base64,${data.base64Images[0]}`
+          : "/images/default.png",
       });
     } catch (error) {
       console.error("거래 상세 정보 불러오기 오류:", error);
@@ -78,15 +67,11 @@ const DetailTrade = () => {
         {/* ✅ 상단 헤더 */}
         <div className={styles.tradeHeader}>
           <button className={styles.backButton} onClick={() => navigate(-1)}>
-            <img src={BackIcon} alt="Back Icon" className={styles.backIcon} />
+            <img src={BackIcon} alt="뒤로 가기" className={styles.backIcon} />
           </button>
 
-          <div className={styles.imageContainer}>
-            {tradeItem.images.length > 0 ? (
-              <img src={tradeItem.images[0]} className={styles.tradeImage} alt="Trade Item" />
-            ) : (
-              <p>이미지 없음</p>
-            )}
+          <div className={styles.posterContainer}>
+            <img src={tradeItem.poster} className={styles.posterImage} alt="Trade Item" />
           </div>
 
           <button className={styles.bookmarkButton} onClick={handleBookmarkClick}>
@@ -99,7 +84,7 @@ const DetailTrade = () => {
 
           <div className={styles.tradeInfo}>
             <h2 className={styles.tradeTitle}>{tradeItem.name}</h2>
-            <p className={styles.price}>{tradeItem.price.toLocaleString()}원</p>
+            <p className={styles.price}>{tradeItem.price}원</p>
             <p className={styles.createdTime}>등록일: {tradeItem.createdTime.split("T")[0]}</p>
           </div>
         </div>
@@ -115,16 +100,9 @@ const DetailTrade = () => {
           <h3>거래 위치</h3>
           <p>{tradeItem.location}</p>
         </div>
-
-        {/* ✅ 관련 전시 정보 (있을 경우) */}
-        {tradeItem.exhibition && (
-          <div className={styles.section}>
-            <h3>관련 전시</h3>
-            <ExhibitionBox exhibition={tradeItem.exhibition} />
-          </div>
-        )}
       </div>
 
+      {/* ✅ 푸터 추가 */}
       <Footer />
     </div>
   );

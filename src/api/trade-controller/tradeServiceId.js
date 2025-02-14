@@ -7,7 +7,7 @@ import api from "../api"; // Axios 설정 파일을 임포트
  */
 export const fetchTradeItemById = async (itemId) => {
   try {
-    const response = await api.get(`/api/items/${itemId}`);
+    const response = await api.get(`/items/${itemId}`);
     return response.data; // API 응답 데이터 반환
   } catch (error) {
     console.error("거래 아이템 상세 조회 API 오류:", error);

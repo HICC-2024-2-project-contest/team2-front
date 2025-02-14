@@ -30,7 +30,7 @@ function Trade() {
   const [page, setPage] = useState(0);
   const [loading, setLoading] = useState(false);
   const [hasMore, setHasMore] = useState(true);
-  const itemsPerPage = 3;
+  const itemsPerPage = 8;
 
   const observerRef = useRef(null);
 
@@ -52,7 +52,8 @@ function Trade() {
 
   useEffect(() => {
     getTrades();
-  }, [searchKeyword, page]);
+    console.log("🛠️ 업데이트된 trades 데이터:", trades);
+  }, [searchKeyword, page, trades]);
 
   const getTrades = async () => {
     if (loading || !hasMore) return;
@@ -82,7 +83,7 @@ function Trade() {
         };
 
         return {
-          id: item.listItemDto.id,
+          id: item.listItemDto.id || 1,
           title: item.listItemDto.name,
           price: `${item.listItemDto.price.toLocaleString()}원`,
           createdTime: item.listItemDto.createdTime,
