@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home/Home";
 import Trade from "./pages/Trade/Trade";
+// import DetailTrade from "./pages/Trade/DetailTrade/DetailTrade";
 import Exhibition from "./pages/Exhibition/Exhibition";
 import DetailExhibition from "./pages/Exhibition/DetailExhibition/DetailExhibition";
 import RegisterExhibition from "./pages/Exhibition/RegisterExhibition/RegisterExhibition";
@@ -24,6 +25,7 @@ function App() {
           <Route path="/trade" element={<Trade />} />
           <Route path="/exhibition" element={<Exhibition />} />
           <Route path="/exhibition/:id" element={<DetailExhibition />} />
+          {/* <Route path="/Trade/:id" element={<DetailTrade />} /> */}
           <Route path="/exhibition/registex" element={<RegisterExhibition />} />
           <Route path="/mypage" element={<MyPage />} />
           <Route path="/mypage/setting" element={<MyPage_Setting />} />

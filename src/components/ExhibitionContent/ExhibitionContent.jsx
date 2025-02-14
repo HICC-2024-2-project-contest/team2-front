@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import styles from "./ExhibitionContent.module.css";
 import { fetchExhibitions } from "../../api/exhibition-controller/exhibitionService";
 
@@ -6,10 +7,11 @@ import { fetchExhibitions } from "../../api/exhibition-controller/exhibitionServ
 import LeftIcon from "../../assets/svg/Left.svg?url";
 import RightIcon from "../../assets/svg/Right.svg?url";
 
-function Exhibition() {
+function ExhibitionContent() {
   const [exhibitions, setExhibitions] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [loading, setLoading] = useState(true);
+  const navigate = useNavigate(); // ✅ 페이지 이동을 위한 useNavigate 추가
 
   useEffect(() => {
     const getExhibitions = async () => {
@@ -57,11 +59,20 @@ function Exhibition() {
     setCurrentIndex((prevIndex) => (prevIndex === 0 ? exhibitions.length - 1 : prevIndex - 1));
   };
 
+  // ✅ 전시 이미지 클릭 시 상세 페이지로 이동
+  const handleImageClick = () => {
+    if (exhibitions[currentIndex]?.id) {
+      navigate(`/exhibition/${exhibitions[currentIndex].id}`);
+    } else {
+      console.error("⚠️ 전시 ID가 존재하지 않습니다!", exhibitions[currentIndex]);
+    }
+  };
+
   return (
     <div className={styles.container}>
       <h1 className={styles.title}>현재 전시</h1>
       <div className={styles.slider}>
-        {/* ✅ 왼쪽 이동 버튼 (Left.svg 적용) */}
+        {/* ✅ 왼쪽 이동 버튼 */}
         <button
           className={styles.navButton}
           onClick={handlePrev}
@@ -70,7 +81,7 @@ function Exhibition() {
           <img src={LeftIcon} alt="왼쪽 이동" className={styles.navIcon} />
         </button>
 
-        <div className={styles.imageContainer}>
+        <div className={styles.imageContainer} onClick={handleImageClick}>
           {loading ? (
             <div className={styles.placeholder} />
           ) : (
@@ -84,7 +95,7 @@ function Exhibition() {
           )}
         </div>
 
-        {/* ✅ 오른쪽 이동 버튼 (Right.svg 적용) */}
+        {/* ✅ 오른쪽 이동 버튼 */}
         <button
           className={styles.navButton}
           onClick={handleNext}
@@ -111,4 +122,4 @@ function Exhibition() {
   );
 }
 
-export default Exhibition;
+export default ExhibitionContent;
