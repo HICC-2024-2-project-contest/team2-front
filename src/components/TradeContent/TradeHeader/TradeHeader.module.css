@@ -1,0 +1,121 @@
+.tradeHeader {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  background-color: #fff;
+  position: relative;
+  border-bottom: 2px solid #f2f2f2; /* ✅ 구분선 추가 */
+}
+
+/* 포스터 이미지 */
+.posterImage {
+  width: 223px;
+  height: 300px;
+  border-radius: 4px;
+  object-fit: cover;
+  margin-top: 35px;
+  position: relative;
+}
+
+/* 거래 정보 */
+.tradeInfo {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* 🔹 왼쪽 정렬 */
+  margin-top: 10px;
+  text-align: left;
+  width: 100%;
+}
+
+/* 거래 제목 */
+.tradeTitle {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 4px;
+  padding-left: 5px;
+}
+
+/* 판매자 정보 컨테이너 */
+.sellerContainer {
+  display: flex;
+  align-items: center; /* 🔹 판매자 로고와 텍스트 수직 정렬 */
+  gap: 14px;
+  padding-left: 5px;
+}
+
+/* 판매자 로고 */
+.sellerLogo {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  background-color: white;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.15);
+}
+
+/* 판매자 이름 및 날짜 */
+.sellerInfo {
+  display: flex;
+  flex-direction: column;
+}
+
+.sellerName {
+  font-size: 14px;
+  font-weight: 500;
+  color: #767676;
+  margin-bottom: 0px;
+}
+
+.tradeDate {
+  font-size: 14px;
+  font-weight: 500;
+  color: #a8a8a8;
+  margin-top: 4px;
+}
+
+/* D-day 뱃지 */
+.dday {
+  position: absolute;
+  bottom: 94px; /* ✅ 하단 정렬 */
+  right: 8px; /* ✅ 우측 정렬 */
+  font-size: 14px;
+  font-weight: 500;
+  background-color: #5a91ff; /* ✅ 파란색 배경 */
+  color: white;
+  padding: 2px 8px;
+  border-radius: 12px;
+  text-align: center;
+}
+
+/* 북마크 버튼 */
+.bookmarkButton {
+  background: none;
+  border: none;
+  cursor: pointer;
+  position: absolute;
+  top: 16px;
+  right: 10px;
+}
+
+.bookmarkIcon {
+  width: 27px;
+  height: 27px;
+}
+
+/* 뒤로 가기 버튼 */
+.backIcon {
+  width: 14px;
+  height: 24px;
+}
+
+.backButton {
+  position: absolute;
+  top: 16px;
+  left: 10px;
+  background: none; /* ✅ 배경 제거 */
+  border: none; /* ✅ 테두리 제거 */
+  cursor: pointer;
+  z-index: 10;
+  padding: 0; /* ✅ 추가 패딩 제거 */
+}

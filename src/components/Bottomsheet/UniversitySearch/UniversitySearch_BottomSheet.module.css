@@ -1,0 +1,28 @@
+.container {
+  width: 100%;
+  height: 80vh;
+  background-color: white;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  position: relative;
+}
+
+.backIcon {
+  width: 15px;
+  height: 20px;
+  cursor: pointer;
+}
+
+.results {
+  flex-grow: 1;
+  margin-top: 20px;
+}

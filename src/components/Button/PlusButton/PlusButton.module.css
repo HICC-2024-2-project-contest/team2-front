@@ -1,0 +1,72 @@
+.floatingButton {
+  position: fixed;
+  bottom: 90px;
+  right: 30px;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background-color: #0c5dff;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.3s ease-in-out;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+}
+
+.floatingButton.open {
+  transform: rotate(45deg);
+  background-color: white;
+}
+
+.icon {
+  width: 40px;
+  height: 40px;
+  transition: transform 0.3s ease-in-out;
+}
+
+/* 배경 어두워지는 오버레이 */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0);
+  transition: background 0.3s ease-in-out;
+  z-index: 998;
+}
+
+.overlay.active {
+  background: rgba(0, 0, 0, 0.5); /* 활성화 시 */
+}
+
+/* 버튼 클릭 시 나타나는 메뉴 */
+.menu {
+  position: fixed;
+  bottom: 160px;
+  right: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  z-index: 999;
+}
+
+.menuItem {
+  background: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.menuIcon {
+  width: 20px;
+  height: 20px;
+}

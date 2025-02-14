@@ -1,7 +1,7 @@
 import React from 'react';
-import styles from './Exhibition.module.css';
+import styles from './Trade.module.css';
 
-function Exhibition() {
+function Trade() {
   return (
     <div className={styles.container}>
       <h1 className={styles.title}>Welcome to the Home Page</h1>
@@ -10,4 +10,4 @@ function Exhibition() {
   );
 }
 
-export default Exhibition;
+export default Trade;
