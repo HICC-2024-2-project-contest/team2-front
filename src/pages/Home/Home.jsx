@@ -8,12 +8,14 @@ import ExhibitionContent from "../../components/ExhibitionContent/ExhibitionCont
 import TradeContent from "../../components/TradeContent/TradeContent";
 import SearchOverlay from "../../components/SearchBox/SearchOverlay";
 import { fetchTrades } from "../../api/trade-controller/tradeService"; // API 함수 추가
+import ExhibitionCalendar from "../../components/ExhibitionCalendar/ExhibitionCalendar";
 
 function Home() {
   const [activeTab, setActiveTab] = useState("exhibition");
   const [isSearchOpen, setSearchOpen] = useState(false);
   const [trades, setTrades] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [exhibitions, setExhibitions] = useState([]);
 
   useEffect(() => {
     const getTradeData = async () => {
@@ -51,7 +53,37 @@ function Home() {
         setLoading(false);
       }
     };
+    const fetchExhibitionData = () => {
+      const data2 = [
+        {
+          date: "2025-02-01",
+          title: "홍익대학교 졸업전시",
+          location: "서울 마포구",
+          dateRange: "2025.02.01 ~ 2025.02.07",
+        },
+        {
+          date: "2025-02-04",
+          title: "서울예대 디자인전",
+          location: "서울 성북구",
+          dateRange: "2025.02.04 ~ 2025.02.10",
+        },
+        {
+          date: "2025-02-04",
+          title: "이화여대 조형예술전",
+          location: "서울 서대문구",
+          dateRange: "2025.02.04 ~ 2025.02.08",
+        },
+        {
+          date: "2025-02-08",
+          title: "한예종 조각과전",
+          location: "서울 성동구",
+          dateRange: "2025.02.08 ~ 2025.02.15",
+        },
+      ];
+      setExhibitions(data2); // 데이터 상태 업데이트
+    };
 
+    fetchExhibitionData();
     getTradeData();
   }, []);
 
@@ -67,6 +99,14 @@ function Home() {
         <SearchBar placeholder="검색어를 입력하세요" />
       </div>
       <div className={styles.content}>
+        {activeTab === "exhibition" && (
+          <div className={styles.content}>
+            <h2 className={styles.sectionTitle}>전시 캘린더</h2>
+            <div className={styles.exhibitionCalendarContainer}>
+              <ExhibitionCalendar exhibitions={exhibitions} />
+            </div>
+          </div>
+        )}
         {activeTab === "exhibition" ? (
           <ExhibitionContent />
         ) : loading ? (
