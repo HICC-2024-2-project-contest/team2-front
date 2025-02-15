@@ -13,7 +13,7 @@ const api = axios.create({
 // 요청 인터셉터: JWT 토큰 자동 추가
 api.interceptors.request.use(
   (config) => {
-    const token = localStorage.getItem("token");
+    const token = localStorage.getItem("kakao_token"); // 로컬 스토리지에서 토큰 가져오기
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;
     }

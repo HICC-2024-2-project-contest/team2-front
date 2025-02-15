@@ -4,10 +4,16 @@ import KakaoLogin from "react-kakao-login";
 import MoaramLogo from "../../assets/svg/MOARAM_logo.svg";
 import Footer from "../../components/Footer/Footer";
 
-const kakaoClientId = import.meta.env.REACT_APP_KAKAO_JAVASCRIPT_KEY; // 실제 JavaScript 키로 변경
+const kakaoClientId = import.meta.env.VITE_KAKAO_JAVASCRIPT_KEY; // 실제 JavaScript 키로 변경
 
 const kakaoOnSuccess = (data) => {
   console.log("카카오 로그인 성공:", data);
+  const idToken = data.response.access_token; // 액세스 토큰 가져오기
+
+  // 로컬 스토리지에 토큰 저장
+  localStorage.setItem("kakao_token", idToken);
+
+  alert("로그인 성공! 이제 서비스를 이용할 수 있습니다.");
 };
 
 const kakaoOnFailure = (error) => {
